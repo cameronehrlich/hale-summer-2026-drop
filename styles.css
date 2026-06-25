@@ -1,0 +1,31 @@
+/* ============================================================
+   Hale Design System — style entry point
+   This is the file the Claude Design environment loads; every
+   design receives its @import closure. It pulls in the tokens
+   and registers the three real Hale webfonts (downloaded from
+   haleswx.com's hale-theme: Marlfield, DM Sans, DM Mono).
+   ============================================================ */
+
+@import url("./tokens.css");
+
+@font-face {
+  font-family: "Marlfield";
+  src: url("./fonts/marlfield-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/dm-sans-500.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Mono";
+  src: url("./fonts/dm-mono-500.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}

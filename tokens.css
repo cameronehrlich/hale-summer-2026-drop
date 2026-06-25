@@ -1,0 +1,67 @@
+/* ============================================================
+   Hale / HalesWX — Design Tokens
+   Extracted from the live haleswx.com homepage (captured 2026-06-24)
+   + the Hale brand strategy deck.
+
+   These are the single source of truth for the Summer 2026 Drop
+   page and the Claude Design component library. Each standalone
+   component preview copies the :root block below so it renders
+   correctly as an isolated card.
+
+   FONTS: the three real Hale webfonts are bundled under fonts/ and
+   registered in styles.css (@font-face), extracted from the live
+   hale-theme on haleswx.com:
+     - Marlfield (OTT_Marlfield-Regular) — editorial display serif
+     - DM Sans 500 — body / nav / UI
+     - DM Mono 500 — numbered technical labels
+   Times / system stacks remain only as graceful fallbacks.
+   ============================================================ */
+
+:root {
+  /* ---- Color: monochrome + warm gray, photography carries all color ---- */
+  --bg:          #E7E8E3;   /* rgb(231,232,227) — site background, warm light gray */
+  --bg-deep:     #DEDFD9;   /* slightly recessed panels */
+  --surface:     #FFFFFF;   /* white pills, cards, form fields */
+  --ink:         #0B0B0A;   /* near-black body + display text */
+  --ink-soft:    #55554F;   /* secondary text, captions */
+  --ink-faint:   #8A8A82;   /* tertiary, footnotes */
+  --line:        rgba(11,11,10,0.16);  /* hairline rules + borders */
+  --line-soft:   rgba(11,11,10,0.08);
+  --hale-data:   #2C5DA0;   /* the ONE accent: Hale's line in data viz only */
+  --warn:        #9A5B2A;   /* muted amber for "illustrative" caveats only */
+
+  /* ---- Type ---- */
+  --font-serif: "Marlfield", "Times New Roman", Times, Georgia, serif;
+  --font-sans:  "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:  "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Display scale (fluid). Elegant serifs read best at regular weight. */
+  --t-display:  clamp(3.25rem, 8vw, 7rem);   /* hero headline */
+  --t-h1:       clamp(2.5rem, 5vw, 4rem);    /* section headline */
+  --t-h2:       clamp(1.75rem, 3vw, 2.5rem);
+  --t-h3:       1.375rem;
+  --t-lead:     clamp(1.125rem, 1.6vw, 1.375rem); /* subheads / lead paragraphs */
+  --t-body:     1.0625rem;
+  --t-small:    0.9375rem;
+  --t-label:    0.6875rem;   /* mono numbered labels — 11px */
+
+  --lh-display: 0.96;
+  --lh-head:    1.04;
+  --lh-body:    1.55;
+
+  --tracking-label: 0.14em;  /* uppercase mono labels */
+
+  /* ---- Space (8px base) ---- */
+  --s-1: 0.5rem;  --s-2: 1rem;   --s-3: 1.5rem;  --s-4: 2rem;
+  --s-5: 3rem;    --s-6: 4rem;    --s-7: 6rem;    --s-8: 8rem;
+  --section-y: clamp(4rem, 10vw, 9rem);   /* vertical rhythm between sections */
+  --gutter:    clamp(1.25rem, 5vw, 5rem); /* page side gutters */
+  --maxw:      1200px;
+  --measure:   62ch;  /* readable text column */
+
+  /* ---- Form ---- */
+  --radius-card: 16px;   /* image cards on the live site */
+  --radius-sm:   10px;   /* inputs, small tiles */
+  --radius-pill: 999px;  /* nav CTA + buttons */
+  --shadow-card: 0 1px 2px rgba(11,11,10,0.04), 0 8px 30px rgba(11,11,10,0.06);
+}
