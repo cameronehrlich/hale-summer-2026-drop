@@ -140,6 +140,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
           <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.6rem">Example configurations</div>
           <div role="group" aria-label="Example fleet configurations" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem">
             <button type="button" class="preset" data-preset="he360" aria-pressed="true">HawkEye 360</button>
+            <button type="button" class="preset" data-preset="starlink" aria-pressed="false">Starlink</button>
           </div>
           <div style="margin-bottom:1.4rem">
             <label for="sats" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Number of satellites</label>
@@ -301,7 +302,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
 <script>
 (function(){
   var WINDOWS = { h1_2026:{swpc:419,hale:448}, h2_2026:{swpc:475,hale:542}, "2027":{swpc:612,hale:775}, "2028":{swpc:1127,hale:1497} };
-  var PRESETS = { he360:{sats:42,costPer:3603571} };
+  var PRESETS = { he360:{sats:42,costPer:3603571}, starlink:{sats:1200,costPer:500000} };
   var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdLYYUIRurohfKQD0OfbsGX9Behctvc2rP_kqXhB4bQJVKROA/formResponse";
   var ENTRIES = { name:"entry.993766149", email:"entry.360654526", company:"entry.676895337", role:"entry.70834795", use:"entry.1822215419" };
   var activePreset = "he360";
