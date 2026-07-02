@@ -247,6 +247,72 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
 
 <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
 
+<!-- DRAG RACE -->
+<section id="drag-race" style="padding-block:var(--section-y)">
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)">
+    <div style="margin-bottom:3rem">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem"><svg width="8" height="6.1" viewBox="0 0 173.3 133" fill="var(--ink)" aria-hidden="true" style="flex-shrink:0"><path d="M86.65 0C134.5 0 173.29 38.79 173.29 86.65C173.29 103.67 168.38 119.55 159.9 132.95H13.4C4.92 119.55 0 103.67 0 86.65C0 38.79 38.8 0 86.65 0Z"/></svg><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">The drag race</span></div>
+      <h2 style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:var(--lh-head);letter-spacing:-0.015em;max-width:22ch;margin:0 0 1rem">The shot was called in January 2022.</h2>
+      <p style="font-size:var(--t-lead);color:var(--ink-soft);max-width:62ch;font-weight:300;margin:0">Three public forecasts of solar flux — the driver of orbital drag — were locked at the start of 2022. Every month since, the Sun has posted its number. Watch the race run.</p>
+    </div>
+
+    <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:1.5rem">
+      <div id="dr-box-hale" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .4s ease">
+        <div id="dr-err-hale" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem"><b>Hale forecast</b><span id="dr-win" style="display:none;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)"> · leading</span></div>
+      </div>
+      <div style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem)">
+        <div id="dr-err-msfc50" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Marshall Space Flight Center <b>(MSFC) Mean</b>, used by AGI</div>
+      </div>
+      <div style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem)">
+        <div id="dr-err-swpc" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Space Weather Prediction Center <b>(SWPC)</b></div>
+      </div>
+    </div>
+    <div id="dr-scorenote" style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 2rem">Mean forecast error · Jan 2022 → …</div>
+
+    <figure style="margin:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-card);padding:clamp(1.25rem,3vw,2rem)">
+      <figcaption style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem">
+        <span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)">F10.7 solar radio flux — forecast vs. observed, monthly</span>
+        <button id="dr-replay" type="button" style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem .9rem;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer">Replay the race</button>
+      </figcaption>
+      <svg id="dr-chart" viewBox="0 0 800 380" width="100%" role="img" aria-label="Line chart: Hale, MSFC, and SWPC F10.7 forecasts locked in January 2022, with the observed monthly value drawn across them. Hale tracks the observed values most closely.">
+        <line x1="60" y1="20" x2="60" y2="320" style="stroke:var(--line)"></line>
+        <line x1="60" y1="320" x2="780" y2="320" style="stroke:var(--line)"></line>
+        <g font-size="11" style="fill:var(--ink-faint);font-family:var(--font-mono)">
+          <text x="52" y="325" text-anchor="end">75</text>
+          <text x="52" y="242" text-anchor="end">125</text>
+          <text x="52" y="158" text-anchor="end">175</text>
+          <text x="52" y="75" text-anchor="end">225</text>
+          <text x="60" y="340">2022</text>
+          <text x="204" y="340">2023</text>
+          <text x="349" y="340">2024</text>
+          <text x="493" y="340">2025</text>
+          <text x="637" y="340">2026</text>
+        </g>
+        <rect id="dr-summer" x="0" y="20" width="0" height="300" fill="rgba(11,11,10,.045)"></rect>
+        <text id="dr-summer-label" x="0" y="34" font-size="10" style="fill:var(--ink-faint);font-family:var(--font-mono);letter-spacing:.08em" opacity="0">SUMMER 2026</text>
+        <path id="dr-p-msfc50" fill="none" stroke="#b9b2a6" stroke-width="2"></path>
+        <path id="dr-p-swpc" fill="none" stroke="#c98b86" stroke-width="2"></path>
+        <path id="dr-p-hale" fill="none" stroke="var(--hale-data)" stroke-width="2.5"></path>
+        <path id="dr-p-obs" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="2 5" stroke-linecap="round"></path>
+        <circle id="dr-dot" r="4.5" fill="var(--ink)" opacity="0"></circle>
+        <text id="dr-dot-label" font-size="11" style="fill:var(--ink);font-family:var(--font-mono)" opacity="0"></text>
+      </svg>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-soft)">
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#2C5DA0;vertical-align:middle;margin-right:.4rem"></i>Hale forecast</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:dashed;border-top-color:#0B0B0A;vertical-align:middle;margin-right:.4rem"></i>Observed (NOAA)</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#c98b86;vertical-align:middle;margin-right:.4rem"></i>SWPC forecast</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#b9b2a6;vertical-align:middle;margin-right:.4rem"></i>MSFC 50th (AGI)</span>
+      </div>
+      <p style="margin:1.5rem 0 0;font-size:0.85rem;color:var(--ink-faint);max-width:62ch">Forecasts as issued at the start of 2022; they have not been revised. Observed values are the monthly mean 10.7&nbsp;cm solar radio flux published by NOAA SWPC — the chart updates automatically as each new month is posted.</p>
+    </figure>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
+
 <!-- API ACCESS -->
 <section id="api" style="padding-block:var(--section-y)">
   <div data-r="stack" style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem);display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,5rem);align-items:start">
@@ -371,6 +437,94 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
   });
 
   recalc();
+})();
+</script>
+<script>
+(function(){
+  // ---- The Drag Race: forecasts locked Jan 2022; observed F10.7 races across ----
+  // Forecast series digitized from Hale's Solar Cycle 25 comparison chart (monthly, Jan 2022 - Dec 2026).
+  var FC = {
+    hale:[110,109.7,115.8,122,126.9,128.5,129,131.9,136.3,141,147.3,150.6,151.4,152.8,155.5,160.2,160.2,157.5,159.1,165.3,167.4,165.6,164.4,167.2,164.9,159.2,156.2,155.3,153.5,152.7,154.8,157.1,156.7,155.7,157.8,165.8,171.4,172.4,172.7,171.4,166.1,163.1,164.6,165.7,164.9,163.3,161.4,159.2,156.9,153.4,149.4,146.6,139.3,133.2,128.3,120.5,118.4,118.8,117.1,116],
+    msfc50:[95.7,98.1,100.6,103.2,106,108.8,111.5,113.6,115.5,117.6,119.9,122.3,124.6,126.5,128.4,130.2,131.7,132.9,133.9,134.6,135.2,135.7,136.4,136.8,136.7,136,135.3,135.2,135.6,136,136.4,136.6,136.7,136.6,136.5,136.4,136,135.2,133.9,132.8,131.6,130.5,129.5,128.4,126.9,125.8,124.9,124.1,123,121.5,120.2,119.3,118.3,116.9,115.5,114.1,112.7,111,109.3,107.7],
+    swpc:[80.3,81.7,83.1,84.5,85.9,87.4,89.1,90.8,92.5,94.3,96.2,97.8,99.7,101.6,103.6,105.4,107.3,109,110.8,112.7,114.3,116,117.8,119.4,120.9,122.4,123.9,125.2,126.5,127.6,128.7,129.8,130.7,131.6,132.4,133.1,133.7,134.2,134.6,135,135.2,135.3,135.4,135.4,135.3,135.2,135,134.6,134.2,133.7,133.1,132.6,131.8,131.1,130.3,129.4,128.5,127.6,126.5,125.5]
+  };
+  // Static fallback (observed monthly mean F10.7, NOAA SWPC, Jan 2022 - Jun 2026) if the live fetch fails.
+  var OBS_FALLBACK = [104,109.2,117.8,130.6,134,115.8,125.6,118.1,134.7,132.8,123.6,148.5,182.5,172.1,157.5,145.9,156,162.4,177.5,153.9,155.7,141.6,154.4,159.3,164,173.3,155.2,161.7,188.4,185.1,198.6,245.6,196.7,222.6,199.9,196.9,189.4,184.3,163.8,162.2,135.2,131.4,137.7,156.1,153.9,139.7,141.6,160.1,151.2,135.9,130.7,120,125.7,138.2];
+  var N = 60, X0 = 60, X1 = 780, Y0 = 320, YV0 = 70, YV1 = 250, YP = 300;
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function X(m){ return X0 + m * (X1 - X0) / (N - 1); }
+  function Y(v){ return Y0 - (v - YV0) * YP / (YV1 - YV0); }
+  function path(arr){ return arr.map(function(v,i){ return (i?'L':'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(''); }
+  function $(id){ return document.getElementById(id); }
+  function tag(i){ var y = 2022 + Math.floor(i/12); return MONTHS[i%12] + ' ' + y; }
+
+  // static forecast lines
+  $('dr-p-hale').setAttribute('d', path(FC.hale));
+  $('dr-p-msfc50').setAttribute('d', path(FC.msfc50));
+  $('dr-p-swpc').setAttribute('d', path(FC.swpc));
+  // Summer 2026 window (Jun-Aug 2026 = months 53..55)
+  var sx = X(53), sw = X(55) - X(53);
+  $('dr-summer').setAttribute('x', sx.toFixed(1)); $('dr-summer').setAttribute('width', sw.toFixed(1));
+  var sl = $('dr-summer-label'); sl.setAttribute('x', (sx + sw/2).toFixed(1)); sl.setAttribute('text-anchor','middle'); sl.setAttribute('opacity','1');
+
+  var obs = OBS_FALLBACK.slice();
+  var started = false, done = false, raceToken = 0;
+
+  function setScores(upto){
+    var names = ['hale','msfc50','swpc'], best = null, bestv = 1e9;
+    names.forEach(function(k){
+      var s = 0;
+      for (var i = 0; i <= upto; i++) s += Math.abs(FC[k][i] - obs[i]) / obs[i];
+      var e = s / (upto + 1) * 100;
+      $('dr-err-' + k).textContent = e.toFixed(1) + '%';
+      if (e < bestv) { bestv = e; best = k; }
+    });
+    $('dr-win').style.display = (best === 'hale' && upto >= 5) ? '' : 'none';
+    $('dr-scorenote').textContent = 'Mean forecast error · Jan 2022 → ' + tag(upto) + (upto === obs.length - 1 ? '' : ' …');
+  }
+
+  function race(){
+    var token = ++raceToken, i = 0;
+    var dot = $('dr-dot'), lbl = $('dr-dot-label'), p = $('dr-p-obs');
+    dot.setAttribute('opacity','1'); lbl.setAttribute('opacity','1');
+    function step(){
+      if (token !== raceToken) return;
+      p.setAttribute('d', path2(obs, i));
+      var x = X(i), y = Y(obs[i]);
+      dot.setAttribute('cx', x.toFixed(1)); dot.setAttribute('cy', y.toFixed(1));
+      lbl.setAttribute('x', (x + (i > N - 10 ? -8 : 8)).toFixed(1)); lbl.setAttribute('y', (y - 9).toFixed(1));
+      lbl.setAttribute('text-anchor', i > N - 10 ? 'end' : 'start');
+      lbl.textContent = tag(i) + ' · ' + obs[i].toFixed(0);
+      setScores(i);
+      if (i < obs.length - 1) { i++; setTimeout(step, 90); }
+      else { done = true; }
+    }
+    step();
+  }
+  function path2(arr, upto){
+    var s = '';
+    for (var i = 0; i <= upto; i++) s += (i ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(arr[i]).toFixed(1);
+    return s;
+  }
+
+  $('dr-replay').addEventListener('click', function(){ done = false; race(); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting && !started) { started = true; race(); io.disconnect(); } });
+    }, { threshold: 0.35 });
+    io.observe($('dr-chart'));
+  } else { started = true; race(); }
+
+  // live observed data (auto-updates monthly); falls back silently to the embedded array
+  fetch('https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var rec = d.filter(function(r){ return r['time-tag'] >= '2022-01' && r['f10.7'] > 0; }).slice(0, N);
+      if (rec.length >= 12) {
+        obs = rec.map(function(r){ return Math.round(r['f10.7'] * 10) / 10; });
+        if (done) { $('dr-p-obs').setAttribute('d', path2(obs, obs.length - 1)); setScores(obs.length - 1); }
+      }
+    }).catch(function(){});
 })();
 </script>
 </body>
