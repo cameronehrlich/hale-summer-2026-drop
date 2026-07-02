@@ -568,32 +568,48 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
     }, mx || 0);
   }
 
+  var raf = window.requestAnimationFrame || function(fn){ return setTimeout(function(){ fn(nowMs()); }, 16); };
+  function nowMs(){ return (window.performance && performance.now) ? performance.now() : Date.now(); }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+
   function race(){
-    var token = ++raceToken, i = 0;
+    var token = ++raceToken;
     var dot = $('dr-dot'), lbl = $('dr-dot-label'), p = $('dr-p-obs');
+    var MS_PER_MONTH = 110, lastIdx = -1, t0 = null;
     // reset any finish flourish
     NAMES.forEach(function(k){ var b = $('dr-box-' + k); b.style.background = 'var(--bg)'; b.style.boxShadow = 'none'; });
     function run(){
       if (token !== raceToken) return;
       dot.setAttribute('opacity','1'); lbl.setAttribute('opacity','1');
       if (FLASHY) { scan.setAttribute('opacity','1'); NAMES.forEach(function(k){ trackers[k].setAttribute('opacity','.85'); }); }
-      step();
+      raf(frame);
     }
-    function step(){
+    function frame(ts){
       if (token !== raceToken) return;
-      p.setAttribute('d', path2(obs, i));
-      var x = X(i), y = Y(obs[i]);
+      if (t0 === null) t0 = ts;
+      var last = obs.length - 1;
+      var f = Math.min((ts - t0) / MS_PER_MONTH, last);   // fractional month
+      var idx = Math.floor(f), frac = f - idx;
+      var nxt = Math.min(idx + 1, last);
+      var x = lerp(X(idx), X(nxt), frac);
+      var y = lerp(Y(obs[idx]), Y(obs[nxt]), frac);
+      p.setAttribute('d', path2(obs, idx) + (frac > 0 ? 'L' + x.toFixed(1) + ',' + y.toFixed(1) : ''));
       dot.setAttribute('cx', x.toFixed(1)); dot.setAttribute('cy', y.toFixed(1));
-      lbl.setAttribute('x', (x + (i > N - 10 ? -8 : 8)).toFixed(1)); lbl.setAttribute('y', (y - 9).toFixed(1));
-      lbl.setAttribute('text-anchor', i > N - 10 ? 'end' : 'start');
-      lbl.textContent = tag(i) + ' · ' + obs[i].toFixed(0);
+      var near = Math.round(f);
+      lbl.setAttribute('x', (x + (near > N - 10 ? -8 : 8)).toFixed(1)); lbl.setAttribute('y', (y - 9).toFixed(1));
+      lbl.setAttribute('text-anchor', near > N - 10 ? 'end' : 'start');
+      lbl.textContent = tag(near) + ' · ' + obs[near].toFixed(0);
       if (FLASHY) {
         scan.setAttribute('x1', x.toFixed(1)); scan.setAttribute('x2', x.toFixed(1));
-        NAMES.forEach(function(k){ trackers[k].setAttribute('cx', x.toFixed(1)); trackers[k].setAttribute('cy', Y(FC[k][i]).toFixed(1)); });
+        NAMES.forEach(function(k){
+          var ty = lerp(Y(FC[k][idx]), Y(FC[k][nxt]), frac);
+          trackers[k].setAttribute('cx', x.toFixed(1)); trackers[k].setAttribute('cy', ty.toFixed(1));
+        });
       }
-      setScores(i);
-      if (i < obs.length - 1) { i++; setTimeout(step, 90); }
+      if (idx !== lastIdx) { setScores(idx); lastIdx = idx; }
+      if (f < last) { raf(frame); }
       else {
+        setScores(last);
         done = true;
         if (FLASHY) {
           scan.setAttribute('opacity','0');
@@ -603,8 +619,63 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
         }
       }
     }
-    if (FLASHY && !done && i === 0 && !race._drawn) { race._drawn = true; drawIn(run); } else { run(); }
+    if (FLASHY && !done && !race._drawn) { race._drawn = true; drawIn(run); } else { run(); }
   }
+
+  // ---- hover inspector: date + all four values at the nearest month ----
+  (function(){
+    var g = document.createElementNS(SVGNS, 'g');
+    g.setAttribute('opacity', '0');
+    g.setAttribute('pointer-events', 'none');
+    var vline = document.createElementNS(SVGNS, 'line');
+    vline.setAttribute('y1','20'); vline.setAttribute('y2','320');
+    vline.setAttribute('stroke','rgba(11,11,10,.28)'); vline.setAttribute('stroke-width','1'); vline.setAttribute('stroke-dasharray','3 3');
+    g.appendChild(vline);
+    var box = document.createElementNS(SVGNS, 'rect');
+    box.setAttribute('width','148'); box.setAttribute('height','96'); box.setAttribute('rx','8');
+    box.setAttribute('fill','var(--surface)'); box.setAttribute('stroke','var(--line)');
+    g.appendChild(box);
+    var colors = { date:'var(--ink)', obs:'var(--ink)', hale:'#2C5DA0', msfc50:'#8a8478', swpc:'#b06a63' };
+    var rows = ['date','obs','hale','msfc50','swpc'].map(function(k){
+      var l = document.createElementNS(SVGNS, 'text');
+      l.setAttribute('font-size','12'); l.setAttribute('style','font-family:var(--font-mono)'); l.setAttribute('fill', colors[k]);
+      var v = document.createElementNS(SVGNS, 'text');
+      v.setAttribute('font-size','12'); v.setAttribute('style','font-family:var(--font-mono)'); v.setAttribute('fill', colors[k]);
+      v.setAttribute('text-anchor','end');
+      g.appendChild(l); g.appendChild(v);
+      return { l: l, v: v };
+    });
+    svg.appendChild(g);
+    function place(idx){
+      var x = X(idx);
+      vline.setAttribute('x1', x.toFixed(1)); vline.setAttribute('x2', x.toFixed(1));
+      var bx = x + 12; if (bx + 148 > 790) bx = x - 160;
+      box.setAttribute('x', bx.toFixed(1)); box.setAttribute('y', '30');
+      var data = [
+        [tag(idx), ''],
+        ['Observed', idx < obs.length ? obs[idx].toFixed(0) : '—'],
+        ['Hale', FC.hale[idx].toFixed(0)],
+        ['MSFC', FC.msfc50[idx].toFixed(0)],
+        ['SWPC', FC.swpc[idx].toFixed(0)]
+      ];
+      rows.forEach(function(r, i){
+        r.l.setAttribute('x', (bx + 12).toFixed(1)); r.l.setAttribute('y', (48 + i * 17).toFixed(1));
+        r.v.setAttribute('x', (bx + 136).toFixed(1)); r.v.setAttribute('y', (48 + i * 17).toFixed(1));
+        r.l.textContent = data[i][0]; r.v.textContent = data[i][1];
+      });
+    }
+    function toMonth(clientX){
+      var r = svg.getBoundingClientRect();
+      var vx = (clientX - r.left) / r.width * 800;
+      var m = Math.round((vx - X0) / (X1 - X0) * (N - 1));
+      return Math.max(0, Math.min(N - 1, m));
+    }
+    svg.addEventListener('pointermove', function(e){
+      place(toMonth(e.clientX));
+      g.setAttribute('opacity', '1');
+    });
+    svg.addEventListener('pointerleave', function(){ g.setAttribute('opacity', '0'); });
+  })();
   function path2(arr, upto){
     var s = '';
     for (var i = 0; i <= upto; i++) s += (i ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(arr[i]).toFixed(1);
