@@ -258,20 +258,32 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
     </div>
 
     <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:1.5rem">
-      <div id="dr-box-hale" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .4s ease">
-        <div id="dr-err-hale" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+      <div id="dr-box-hale" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease,box-shadow .5s ease">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
+          <div id="dr-skill-hale" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+          <span id="dr-rank-hale" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
+        </div>
         <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem"><b>Hale forecast</b><span id="dr-win" style="display:none;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)"> · leading</span></div>
+        <div id="dr-err-hale" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-faint)">mean error —</div>
       </div>
-      <div style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem)">
-        <div id="dr-err-msfc50" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+      <div id="dr-box-msfc50" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
+          <div id="dr-skill-msfc50" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+          <span id="dr-rank-msfc50" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
+        </div>
         <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Marshall Space Flight Center <b>(MSFC) Mean</b>, used by AGI</div>
+        <div id="dr-err-msfc50" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-faint)">mean error —</div>
       </div>
-      <div style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem)">
-        <div id="dr-err-swpc" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+      <div id="dr-box-swpc" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
+          <div id="dr-skill-swpc" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+          <span id="dr-rank-swpc" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
+        </div>
         <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Space Weather Prediction Center <b>(SWPC)</b></div>
+        <div id="dr-err-swpc" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-faint)">mean error —</div>
       </div>
     </div>
-    <div id="dr-scorenote" style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 2rem">Mean forecast error · Jan 2022 → …</div>
+    <div id="dr-scorenote" style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 2rem">Forecast skill score · 1 is a perfect forecast, below 0 is guessing · Jan 2022 → …</div>
 
     <figure style="margin:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-card);padding:clamp(1.25rem,3vw,2rem)">
       <figcaption style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem">
@@ -376,7 +388,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
 <script>
 (function(){
   var WINDOWS = { h1_2026:{swpc:419,hale:448}, h2_2026:{swpc:475,hale:542}, "2027":{swpc:612,hale:775}, "2028":{swpc:1127,hale:1497} };
-  var PRESETS = { he360:{sats:42,costPer:3603571}, starlink:{sats:1200,costPer:500000} };
+  var PRESETS = { he360:{sats:42,costPer:3603571}, starlink:{sats:6500,costPer:500000} };
   var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdLYYUIRurohfKQD0OfbsGX9Behctvc2rP_kqXhB4bQJVKROA/formResponse";
   var ENTRIES = { name:"entry.993766149", email:"entry.360654526", company:"entry.676895337", role:"entry.70834795", use:"entry.1822215419" };
   var activePreset = "he360";
@@ -471,23 +483,102 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
   var obs = OBS_FALLBACK.slice();
   var started = false, done = false, raceToken = 0;
 
-  function setScores(upto){
-    var names = ['hale','msfc50','swpc'], best = null, bestv = 1e9;
-    names.forEach(function(k){
-      var s = 0;
-      for (var i = 0; i <= upto; i++) s += Math.abs(FC[k][i] - obs[i]) / obs[i];
-      var e = s / (upto + 1) * 100;
-      $('dr-err-' + k).textContent = e.toFixed(1) + '%';
-      if (e < bestv) { bestv = e; best = k; }
+  // Flashy mode is the default; append ?classic to the URL to fall back to the quiet version.
+  var FLASHY = !/[?&]classic\b/.test(location.search);
+  var NAMES = ['hale','msfc50','swpc'];
+  var LINE_COLORS = { hale:'#2C5DA0', msfc50:'#b9b2a6', swpc:'#c98b86' };
+  var svg = $('dr-chart'), SVGNS = 'http://www.w3.org/2000/svg';
+  var scan = null, trackers = {};
+  if (FLASHY) {
+    scan = document.createElementNS(SVGNS, 'line');
+    scan.setAttribute('y1','20'); scan.setAttribute('y2','320');
+    scan.setAttribute('stroke','rgba(11,11,10,.14)'); scan.setAttribute('stroke-width','1');
+    scan.setAttribute('opacity','0');
+    svg.insertBefore(scan, $('dr-p-msfc50'));
+    NAMES.forEach(function(k){
+      var c = document.createElementNS(SVGNS, 'circle');
+      c.setAttribute('r','3.2'); c.setAttribute('fill', LINE_COLORS[k]); c.setAttribute('opacity','0');
+      svg.insertBefore(c, $('dr-dot'));
+      trackers[k] = c;
     });
-    $('dr-win').style.display = (best === 'hale' && upto >= 5) ? '' : 'none';
-    $('dr-scorenote').textContent = 'Mean forecast error · Jan 2022 → ' + tag(upto) + (upto === obs.length - 1 ? '' : ' …');
+  }
+
+  // Skill score vs. climatology (1 - MSE_forecast / MSE_climatology) — the SmallSat paper's convention.
+  function skillTo(k, upto){
+    var n = upto + 1, mean = 0, i;
+    for (i = 0; i < n; i++) mean += obs[i];
+    mean /= n;
+    var mseC = 0, mseF = 0;
+    for (i = 0; i < n; i++) {
+      mseC += (obs[i] - mean) * (obs[i] - mean);
+      mseF += (FC[k][i] - obs[i]) * (FC[k][i] - obs[i]);
+    }
+    if (mseC / n < 5) return null; // too little variance yet to be meaningful
+    return 1 - mseF / mseC;
+  }
+  function fmtSkill(s){
+    if (s === null) return '…';
+    if (s < -9.9) s = -9.9;
+    return (s >= 0 ? '+' : '−') + Math.abs(s).toFixed(2);
+  }
+
+  function setScores(upto){
+    var skills = {};
+    NAMES.forEach(function(k){
+      var e = 0;
+      for (var i = 0; i <= upto; i++) e += Math.abs(FC[k][i] - obs[i]) / obs[i];
+      e = e / (upto + 1) * 100;
+      skills[k] = skillTo(k, upto);
+      $('dr-skill-' + k).textContent = fmtSkill(skills[k]);
+      $('dr-err-' + k).textContent = 'mean error ' + e.toFixed(1) + '%';
+    });
+    var order = NAMES.slice().sort(function(a,b){ return (skills[b] === null ? -99 : skills[b]) - (skills[a] === null ? -99 : skills[a]); });
+    $('dr-win').style.display = (order[0] === 'hale' && upto >= 5) ? '' : 'none';
+    if (FLASHY) {
+      var RANKS = ['1st','2nd','3rd'];
+      order.forEach(function(k, idx){
+        var chip = $('dr-rank-' + k);
+        chip.textContent = RANKS[idx];
+        chip.style.visibility = (skills[k] === null || upto < 5) ? 'hidden' : 'visible';
+        if (idx === 0) { chip.style.background = 'var(--ink)'; chip.style.color = 'var(--bg)'; chip.style.borderColor = 'var(--ink)'; }
+        else { chip.style.background = 'transparent'; chip.style.color = 'var(--ink-soft)'; chip.style.borderColor = 'var(--line)'; }
+      });
+    }
+    $('dr-scorenote').textContent = 'Forecast skill score · 1 is a perfect forecast, below 0 is guessing · Jan 2022 → ' + tag(upto) + (upto === obs.length - 1 ? '' : ' …');
+  }
+
+  function drawIn(cb){
+    // forecast lines sweep in before the race starts
+    var ps = [$('dr-p-swpc'), $('dr-p-msfc50'), $('dr-p-hale')], mx = 0;
+    ps.forEach(function(p, i){
+      try {
+        var len = p.getTotalLength();
+        p.style.transition = 'none';
+        p.style.strokeDasharray = len + ' ' + len;
+        p.style.strokeDashoffset = len;
+        p.getBoundingClientRect();
+        p.style.transition = 'stroke-dashoffset .9s ease ' + (i * 0.18) + 's';
+        p.style.strokeDashoffset = '0';
+        mx = 900 + i * 180;
+      } catch(e) {}
+    });
+    setTimeout(function(){
+      ps.forEach(function(p){ p.style.strokeDasharray = 'none'; });
+      cb();
+    }, mx || 0);
   }
 
   function race(){
     var token = ++raceToken, i = 0;
     var dot = $('dr-dot'), lbl = $('dr-dot-label'), p = $('dr-p-obs');
-    dot.setAttribute('opacity','1'); lbl.setAttribute('opacity','1');
+    // reset any finish flourish
+    NAMES.forEach(function(k){ var b = $('dr-box-' + k); b.style.background = 'var(--bg)'; b.style.boxShadow = 'none'; });
+    function run(){
+      if (token !== raceToken) return;
+      dot.setAttribute('opacity','1'); lbl.setAttribute('opacity','1');
+      if (FLASHY) { scan.setAttribute('opacity','1'); NAMES.forEach(function(k){ trackers[k].setAttribute('opacity','.85'); }); }
+      step();
+    }
     function step(){
       if (token !== raceToken) return;
       p.setAttribute('d', path2(obs, i));
@@ -496,11 +587,23 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
       lbl.setAttribute('x', (x + (i > N - 10 ? -8 : 8)).toFixed(1)); lbl.setAttribute('y', (y - 9).toFixed(1));
       lbl.setAttribute('text-anchor', i > N - 10 ? 'end' : 'start');
       lbl.textContent = tag(i) + ' · ' + obs[i].toFixed(0);
+      if (FLASHY) {
+        scan.setAttribute('x1', x.toFixed(1)); scan.setAttribute('x2', x.toFixed(1));
+        NAMES.forEach(function(k){ trackers[k].setAttribute('cx', x.toFixed(1)); trackers[k].setAttribute('cy', Y(FC[k][i]).toFixed(1)); });
+      }
       setScores(i);
       if (i < obs.length - 1) { i++; setTimeout(step, 90); }
-      else { done = true; }
+      else {
+        done = true;
+        if (FLASHY) {
+          scan.setAttribute('opacity','0');
+          var b = $('dr-box-hale');
+          b.style.background = 'var(--surface)';
+          b.style.boxShadow = 'var(--shadow-card)';
+        }
+      }
     }
-    step();
+    if (FLASHY && !done && i === 0 && !race._drawn) { race._drawn = true; drawIn(run); } else { run(); }
   }
   function path2(arr, upto){
     var s = '';
