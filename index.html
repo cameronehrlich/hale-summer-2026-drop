@@ -264,7 +264,6 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
           <span id="dr-rank-hale" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
         </div>
         <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem"><b>Hale forecast</b><span id="dr-win" style="display:none;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)"> · leading</span></div>
-        <div id="dr-err-hale" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-faint)">mean error —</div>
       </div>
       <div id="dr-box-msfc50" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
@@ -272,7 +271,6 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
           <span id="dr-rank-msfc50" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
         </div>
         <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Marshall Space Flight Center <b>(MSFC) Mean</b>, used by AGI</div>
-        <div id="dr-err-msfc50" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-faint)">mean error —</div>
       </div>
       <div id="dr-box-swpc" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
@@ -280,7 +278,6 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
           <span id="dr-rank-swpc" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
         </div>
         <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Space Weather Prediction Center <b>(SWPC)</b></div>
-        <div id="dr-err-swpc" style="margin-top:.35rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-faint)">mean error —</div>
       </div>
     </div>
     <div id="dr-scorenote" style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 2rem">Forecast skill score · 1 is a perfect forecast, below 0 is guessing · Jan 2022 → …</div>
@@ -455,11 +452,11 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
 <script>
 (function(){
   // ---- The Drag Race: forecasts locked Jan 2022; observed F10.7 races across ----
-  // Forecast series digitized from Hale's Solar Cycle 25 comparison chart (monthly, Jan 2022 - Dec 2026).
+  // Forecast series: exact monthly values provided by Hale (HE360-MonthlyData, Jul 2026 handoff), Jan 2022 - Dec 2026.
   var FC = {
-    hale:[110,109.7,115.8,122,126.9,128.5,129,131.9,136.3,141,147.3,150.6,151.4,152.8,155.5,160.2,160.2,157.5,159.1,165.3,167.4,165.6,164.4,167.2,164.9,159.2,156.2,155.3,153.5,152.7,154.8,157.1,156.7,155.7,157.8,165.8,171.4,172.4,172.7,171.4,166.1,163.1,164.6,165.7,164.9,163.3,161.4,159.2,156.9,153.4,149.4,146.6,139.3,133.2,128.3,120.5,118.4,118.8,117.1,116],
-    msfc50:[95.7,98.1,100.6,103.2,106,108.8,111.5,113.6,115.5,117.6,119.9,122.3,124.6,126.5,128.4,130.2,131.7,132.9,133.9,134.6,135.2,135.7,136.4,136.8,136.7,136,135.3,135.2,135.6,136,136.4,136.6,136.7,136.6,136.5,136.4,136,135.2,133.9,132.8,131.6,130.5,129.5,128.4,126.9,125.8,124.9,124.1,123,121.5,120.2,119.3,118.3,116.9,115.5,114.1,112.7,111,109.3,107.7],
-    swpc:[80.3,81.7,83.1,84.5,85.9,87.4,89.1,90.8,92.5,94.3,96.2,97.8,99.7,101.6,103.6,105.4,107.3,109,110.8,112.7,114.3,116,117.8,119.4,120.9,122.4,123.9,125.2,126.5,127.6,128.7,129.8,130.7,131.6,132.4,133.1,133.7,134.2,134.6,135,135.2,135.3,135.4,135.4,135.3,135.2,135,134.6,134.2,133.7,133.1,132.6,131.8,131.1,130.3,129.4,128.5,127.6,126.5,125.5]
+    hale:[105.2,113.3,117.4,124.9,128.1,128.5,129.2,133.8,138,143.1,150.3,150.8,151.6,153.6,156.6,162,158.7,156.4,160.5,168,166.8,164.4,164.2,169.1,162,156.8,155.6,154.9,152.3,152.9,155.9,157.8,155.8,155.5,159.5,170.5,171.8,172.6,172.5,170.6,163,163,165.6,165.7,164.2,162.4,160.4,158.1,155.8,151.3,148,145.5,135.1,131.8,126,116.3,119.8,118,116.3,115.7],
+    msfc50:[96.6,99.1,101.5,104.2,107,109.8,112.4,114.4,116.2,118.5,120.8,123.3,125.4,127.2,129,130.7,132.1,133.2,134.2,134.8,135.3,135.9,136.5,136.8,136.4,135.5,135,135.1,135.7,136.2,136.4,136.6,136.6,136.5,136.4,136.3,135.6,134.6,133.4,132.2,131,130.1,129,127.7,126.3,125.2,124.4,123.7,122.3,120.8,119.7,118.9,117.7,116.3,114.8,113.4,112,110.2,108.5,106.9],
+    swpc:[80.8,82.1,83.5,85,86.5,88.1,89.8,91.5,93.2,95,96.8,98.6,100.5,102.3,104.2,106.1,107.9,109.7,111.5,113.3,115,116.7,118.4,119.9,121.5,122.9,124.3,125.6,126.9,128,129.1,130.1,131,131.9,132.6,133.3,133.8,134.3,134.7,135,135.2,135.3,135.4,135.3,135.2,135,134.7,134.3,133.9,133.4,132.8,132.2,131.4,130.7,129.8,128.9,128,127,126,124.9]
   };
   // Static fallback (observed monthly mean F10.7, NOAA SWPC, Jan 2022 - Jun 2026) if the live fetch fails.
   var OBS_FALLBACK = [104,109.2,117.8,130.6,134,115.8,125.6,118.1,134.7,132.8,123.6,148.5,182.5,172.1,157.5,145.9,156,162.4,177.5,153.9,155.7,141.6,154.4,159.3,164,173.3,155.2,161.7,188.4,185.1,198.6,245.6,196.7,222.6,199.9,196.9,189.4,184.3,163.8,162.2,135.2,131.4,137.7,156.1,153.9,139.7,141.6,160.1,151.2,135.9,130.7,120,125.7,138.2];
@@ -525,12 +522,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
   function setScores(upto){
     var skills = {};
     NAMES.forEach(function(k){
-      var e = 0;
-      for (var i = 0; i <= upto; i++) e += Math.abs(FC[k][i] - obs[i]) / obs[i];
-      e = e / (upto + 1) * 100;
       skills[k] = skillTo(k, upto);
       $('dr-skill-' + k).textContent = fmtSkill(skills[k]);
-      $('dr-err-' + k).textContent = 'mean error ' + e.toFixed(1) + '%';
     });
     var order = NAMES.slice().sort(function(a,b){ return (skills[b] === null ? -99 : skills[b]) - (skills[a] === null ? -99 : skills[a]); });
     $('dr-win').style.display = (order[0] === 'hale' && upto >= 5) ? '' : 'none';
