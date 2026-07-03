@@ -480,8 +480,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
   var obs = OBS_FALLBACK.slice();
   var started = false, done = false, raceToken = 0;
 
-  // Flashy mode is the default; append ?classic to the URL to fall back to the quiet version.
-  var FLASHY = !/[?&]classic\b/.test(location.search);
+  var FLASHY = true; // classic mode retired 7/3 per Katherine's pick
   var NAMES = ['hale','msfc50','swpc'];
   var LINE_COLORS = { hale:'#2C5DA0', msfc50:'#b9b2a6', swpc:'#c98b86' };
   var svg = $('dr-chart'), SVGNS = 'http://www.w3.org/2000/svg';
