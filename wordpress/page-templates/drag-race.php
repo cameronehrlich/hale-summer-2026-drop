@@ -1,0 +1,708 @@
+<?php
+/**
+ * Template Name: Drag Race (Standalone)
+ *
+ * Full-bleed standalone template for the Summer 2026 Drag Race page.
+ * Prints a complete HTML document and bypasses the theme chrome entirely.
+ * Generated from the canonical page repo (hale-summer-2026-drop); do not hand-edit —
+ * regenerate and re-upload to update.
+ */
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hale — Summer 2026 Drag Race · Orbital Drag Forecast</title>
+<style>
+/* Hale — Summer 2026 Drop. Tokens + fonts extracted from haleswx.com (hale-theme). */
+:root{
+  --bg:#E7E8E3;--bg-deep:#DEDFD9;--surface:#FFFFFF;--ink:#0B0B0A;--ink-soft:#55554F;--ink-faint:#8A8A82;
+  --line:rgba(11,11,10,0.16);--line-soft:rgba(11,11,10,0.08);--hale-data:#2C5DA0;--warn:#9A5B2A;
+  --font-serif:"Marlfield","Times New Roman",Times,Georgia,serif;
+  --font-sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --t-display:clamp(3.25rem,8vw,7rem);--t-h1:clamp(2.5rem,5vw,4rem);--t-h2:clamp(1.75rem,3vw,2.5rem);--t-h3:1.375rem;
+  --t-lead:clamp(1.125rem,1.6vw,1.375rem);--t-body:1.0625rem;--t-small:0.9375rem;--t-label:0.6875rem;
+  --lh-display:0.96;--lh-head:1.04;--lh-body:1.55;--tracking-label:0.14em;
+  --section-y:clamp(4rem,10vw,9rem);--gutter:clamp(1.25rem,5vw,5rem);--maxw:1200px;--measure:62ch;
+  --radius-card:16px;--radius-sm:10px;--radius-pill:999px;--shadow-card:0 1px 2px rgba(11,11,10,.04),0 8px 30px rgba(11,11,10,.06);
+  --img-fx:saturate(1.1) contrast(1.05) brightness(1.02);
+}
+@font-face{font-family:"Marlfield";src:url("https://cameronehrlich.github.io/hale-summer-2026-drop/fonts/marlfield-regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"DM Sans";src:url("https://cameronehrlich.github.io/hale-summer-2026-drop/fonts/dm-sans-500.woff2") format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
+@font-face{font-family:"DM Mono";src:url("https://cameronehrlich.github.io/hale-summer-2026-drop/fonts/dm-mono-500.woff2") format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-sans);font-size:var(--t-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block}
+.imgfx{filter:var(--img-fx)}
+.lnk{transition:opacity .15s ease}
+.lnk:hover{opacity:1!important}
+.btn{transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-ghost:hover{background:rgba(11,11,10,.05);transform:none}
+.pill{transition:transform .15s ease}
+.pill:hover{transform:translateY(-1px)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:0}
+.preset{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem .8rem;border-radius:999px;cursor:pointer;transition:background .12s ease;background:transparent;color:var(--ink);border:1px solid var(--line)}
+.preset[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+@media (max-width:900px){ [data-r="deco"]{display:none!important} }
+@media (max-width:820px){ [data-r="stack"]{grid-template-columns:1fr!important} [data-r="divider"]{border-right:0!important;border-bottom:1px solid var(--line)!important} }
+@media (max-width:760px){ [data-r="navlinks"]{display:none!important} }
+@media (max-width:560px){ [data-r="pair"]{grid-template-columns:1fr!important} }
+@media (max-width:700px){ #drag-race svg text,#proof svg text{font-size:18px} #dr-dot{r:6} }
+</style>
+</head>
+<body>
+
+<header style="position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(120%) blur(8px);-webkit-backdrop-filter:saturate(120%) blur(8px);border-bottom:1px solid var(--line-soft)">
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem);display:flex;align-items:center;justify-content:space-between;height:72px">
+    <a href="https://haleswx.com/" style="display:flex;align-items:center;color:var(--ink);text-decoration:none" aria-label="Hale — home"><svg width="61" height="25" viewBox="0 0 1817 747" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path d="M1457.1 746.011C1334.54 746.011 1254.61 634.108 1254.61 481.708C1254.61 331.44 1330.28 228.063 1448.57 228.063C1564.74 228.063 1631.88 326.111 1631.88 472.117H1359.05V500.892C1359.05 603.202 1395.29 667.146 1479.48 667.146C1542.36 667.146 1589.25 629.846 1604.17 531.798H1630.82C1624.42 654.357 1566.87 746.011 1457.1 746.011ZM1440.05 268.561C1398.49 268.561 1359.05 295.205 1359.05 377.266V432.685H1521.04V377.266C1521.04 296.27 1481.61 268.561 1440.05 268.561Z"/><path d="M1048.04 735.357V708.714C1082.15 708.714 1100.26 683.136 1100.26 642.638V77.7987C1100.26 39.4322 1086.41 26.6434 1048.04 26.6434V1.11501e-05H1196.18V642.638C1196.18 683.136 1214.3 708.714 1248.4 708.714V735.357H1048.04Z"/><path d="M752.792 746.011C684.585 746.011 627.035 700.184 627.035 628.78C627.035 521.141 752.792 488.103 810.342 447.605C848.708 420.961 873.22 393.252 873.22 342.097C873.22 296.27 842.314 266.43 796.487 266.43C751.726 266.43 718.688 290.942 718.688 326.111C718.688 362.346 751.726 359.149 751.726 399.647C751.726 430.553 729.346 452.934 697.374 452.934C656.876 452.934 629.167 420.961 629.167 373.003C629.167 300.533 694.177 228.063 805.013 228.063C903.061 228.063 969.136 276.021 969.136 388.989V625.583C969.136 663.949 977.662 674.606 992.582 674.606C1006.44 674.606 1013.9 662.883 1020.29 649.029L1041.61 658.62C1026.69 722.564 989.385 742.813 952.084 742.813C909.455 742.813 873.22 720.433 873.22 663.949H871.089C848.708 721.499 802.881 746.011 752.792 746.011ZM790.093 669.278C827.393 669.278 863.628 642.634 873.22 586.15V444.408C857.234 461.459 840.182 474.248 823.131 485.971C770.909 522.206 727.214 550.981 727.214 607.465C727.214 647.963 752.792 669.278 790.093 669.278Z"/><path d="M0 735.357V708.714C47.9581 708.714 73.5357 683.136 73.5357 642.638V92.719C73.5357 52.221 47.9581 26.6434 0 26.6434V0H253.645V26.6434C205.687 26.6434 180.109 52.221 180.109 92.719V330.378H425.228V92.719C425.228 52.221 399.651 26.6434 351.693 26.6434V0H605.338V26.6434C557.379 26.6434 531.802 52.221 531.802 92.719V642.638C531.802 683.136 557.379 708.714 605.338 708.714V735.357H351.693V708.714C399.651 708.714 425.228 683.136 425.228 642.638V373.007H180.109V642.638C180.109 683.136 205.687 708.714 253.645 708.714V735.357H0Z"/><path d="M1729.9 602.412C1777.75 602.412 1816.54 641.205 1816.54 689.057C1816.54 706.085 1811.63 721.964 1803.15 735.357H1656.65C1648.17 721.964 1643.25 706.084 1643.25 689.057C1643.25 641.205 1682.05 602.412 1729.9 602.412Z"/></svg></a>
+    <nav style="display:flex;gap:2rem;align-items:center">
+      <div data-r="navlinks" style="display:flex;gap:2rem;align-items:center">
+      <a class="lnk" href="#event" style="font-family:var(--font-sans);font-size:0.95rem;text-decoration:none;color:var(--ink);opacity:.82">About</a>
+      <a class="lnk" href="#value" style="font-family:var(--font-sans);font-size:0.95rem;text-decoration:none;color:var(--ink);opacity:.82">Advantage</a>
+      <a class="lnk" href="#calculator" style="font-family:var(--font-sans);font-size:0.95rem;text-decoration:none;color:var(--ink);opacity:.82">Applications</a>
+      <a class="lnk" href="#proof" style="font-family:var(--font-sans);font-size:0.95rem;text-decoration:none;color:var(--ink);opacity:.82">Lab</a>
+      </div>
+      <a class="pill" href="#api" style="font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.7rem 1.1rem;text-decoration:none;white-space:nowrap;color:var(--ink)">Request access</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="position:relative;padding-block:clamp(4rem,9vw,8rem) var(--section-y);overflow:hidden">
+  <div aria-hidden="true" data-r="deco" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+    <figure style="position:absolute;top:7%;right:4%;width:clamp(140px,16vw,196px);height:clamp(140px,16vw,196px);transform:rotate(2deg);border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-card);margin:0">
+      <img class="imgfx" src="https://cameronehrlich.github.io/hale-summer-2026-drop/images/hero-launch.jpg" alt="" style="width:100%;height:100%;object-fit:cover">
+      <figcaption style="position:absolute;left:10px;bottom:9px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase">01 / Satellite environment</figcaption>
+    </figure>
+    <figure style="position:absolute;top:43%;right:18%;width:clamp(104px,11vw,134px);height:clamp(104px,11vw,134px);transform:rotate(-4deg);border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-card);margin:0">
+      <img class="imgfx" src="https://cameronehrlich.github.io/hale-summer-2026-drop/images/hero-sun.jpg" alt="" style="width:100%;height:100%;object-fit:cover">
+      <figcaption style="position:absolute;left:10px;bottom:9px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase">02 / Solar Proxies</figcaption>
+    </figure>
+    <figure style="position:absolute;bottom:7%;right:7%;width:clamp(120px,13vw,164px);height:clamp(120px,13vw,164px);transform:rotate(1.5deg);border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-card);margin:0">
+      <img class="imgfx" src="https://cameronehrlich.github.io/hale-summer-2026-drop/images/hero-earth.jpg" alt="" style="width:100%;height:100%;object-fit:cover">
+      <figcaption style="position:absolute;left:10px;bottom:9px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase">03 / Atmospheric density</figcaption>
+    </figure>
+  </div>
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem);position:relative;z-index:1">
+    <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2rem">Summer 2026 Drag Race · Orbital drag forecast</div>
+    <h1 style="font-family:var(--font-serif);font-size:var(--t-display);font-weight:400;line-height:var(--lh-display);letter-spacing:-0.02em;max-width:16ch;margin:0">Anticipate orbital decay before it appears in your bottom line.</h1>
+    <p style="margin:1.75rem 0 0;font-size:var(--t-lead);color:var(--ink-soft);max-width:54ch;font-weight:300">Hale's forecast shows how long-range solar physics can change satellite lifespan planning, replacement timing, and fleet-level capital efficiency.</p>
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <a class="btn" href="#calculator" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;padding:.95rem 1.6rem;border-radius:999px;text-decoration:none;border:1px solid var(--ink);background:var(--ink);color:var(--bg)">Estimate fleet impact</a>
+      <a class="btn btn-ghost" href="#api" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;padding:.95rem 1.6rem;border-radius:999px;text-decoration:none;border:1px solid var(--ink);background:transparent;color:var(--ink)">Request API access</a>
+    </div>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
+
+<!-- EVENT -->
+<section id="event" style="padding-block:var(--section-y)">
+  <div data-r="stack" style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem);display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,5rem);align-items:center">
+    <figure style="position:relative;margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-card)">
+      <img class="imgfx" src="https://cameronehrlich.github.io/hale-summer-2026-drop/images/event-sun.jpg" alt="The Sun glowing low through the upper atmosphere" style="width:100%;aspect-ratio:4/3;object-fit:cover">
+      <figcaption style="position:absolute;left:14px;bottom:12px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase">Solar structure</figcaption>
+    </figure>
+    <div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem"><svg width="8" height="6.1" viewBox="0 0 173.3 133" fill="var(--ink)" aria-hidden="true" style="flex-shrink:0"><path d="M86.65 0C134.5 0 173.29 38.79 173.29 86.65C173.29 103.67 168.38 119.55 159.9 132.95H13.4C4.92 119.55 0 103.67 0 86.65C0 38.79 38.8 0 86.65 0Z"/></svg><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">The event</span></div>
+      <h2 style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:var(--lh-head);letter-spacing:-.015em;max-width:18ch;margin:0 0 1.5rem">A favorable shift in atmospheric density is coming. The advantage is knowing early.</h2>
+      <p style="max-width:62ch;color:var(--ink-soft);font-size:1.075rem;margin:0">Hale is forecasting a shift in solar activity and upper-atmospheric density through Summer 2026. For satellites in low-Earth orbit, lower drag means longer time on orbit — and longer time on orbit changes when you launch, when you replenish, and when you spend.</p>
+      <p style="max-width:62ch;color:var(--ink-soft);font-size:1.075rem;margin:1rem 0 0">The value isn't the event, it's the horizon: seeing the regime change before it shows up in decay telemetry, while there is still time to act on it.</p>
+    </div>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
+
+<!-- VALUE -->
+<section id="value" style="padding-block:var(--section-y)">
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)">
+    <div style="margin-bottom:3rem">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem"><svg width="8" height="6.1" viewBox="0 0 173.3 133" fill="var(--ink)" aria-hidden="true" style="flex-shrink:0"><path d="M86.65 0C134.5 0 173.29 38.79 173.29 86.65C173.29 103.67 168.38 119.55 159.9 132.95H13.4C4.92 119.55 0 103.67 0 86.65C0 38.79 38.8 0 86.65 0Z"/></svg><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">Why it matters</span></div>
+      <h2 style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:var(--lh-head);letter-spacing:-0.015em;max-width:20ch;margin:0">The forecast pays for itself.</h2>
+    </div>
+    <div data-r="stack" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem)">
+      <div style="border-top:1px solid var(--ink);padding-top:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.75rem">For executives — CAPEX &amp; asset life</div>
+        <h3 style="font-family:var(--font-serif);font-size:var(--t-h3);font-weight:400;margin:0 0 .75rem">Days of additional satellite life become deferred replacement CAPEX.</h3>
+        <p style="color:var(--ink-soft);margin:0">A longer modeled lifespan moves replacement spend later and sharpens capital allocation. Hale turns space weather from a reactive risk into a line item you can plan against and optimize with.</p>
+      </div>
+      <div style="border-top:1px solid var(--ink);padding-top:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.75rem">For flight dynamics — testable signal</div>
+        <h3 style="font-family:var(--font-serif);font-size:var(--t-h3);font-weight:400;margin:0 0 .75rem">Forecast deltas you can run in your own propagation workflow.</h3>
+        <p style="color:var(--ink-soft);margin:0">Hale's forecast increases confidence in lifespan projections, but don't take our word for it. Hale's forecast is formatted for existing propagators and can be compared against SWPC, MSFC, and your TLE history. Request API access and test the signal directly against your constellation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
+
+<!-- CALCULATOR -->
+<section id="calculator" style="padding-block:var(--section-y)">
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)">
+    <div style="margin-bottom:3rem">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem"><svg width="8" height="6.1" viewBox="0 0 173.3 133" fill="var(--ink)" aria-hidden="true" style="flex-shrink:0"><path d="M86.65 0C134.5 0 173.29 38.79 173.29 86.65C173.29 103.67 168.38 119.55 159.9 132.95H13.4C4.92 119.55 0 103.67 0 86.65C0 38.79 38.8 0 86.65 0Z"/></svg><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">Estimate fleet impact</span></div>
+      <h2 style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:var(--lh-head);letter-spacing:-0.015em;max-width:20ch;margin:0 0 1rem">What is the lifespan delta worth to your fleet?</h2>
+      <p style="font-size:var(--t-lead);color:var(--ink-soft);max-width:62ch;font-weight:300;margin:0">A first-order estimate of the value of Hale's modeled lifespan advantage over the SWPC baseline.</p>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-card);overflow:hidden">
+      <div data-r="stack" style="display:grid;grid-template-columns:1fr 1fr">
+        <div data-r="divider" style="padding:clamp(1.5rem,3vw,2.5rem);border-right:1px solid var(--line)">
+          <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.6rem">Example configurations</div>
+          <div role="group" aria-label="Example fleet configurations" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem">
+            <button type="button" class="preset" data-preset="he360" aria-pressed="true">HawkEye 360</button>
+            <button type="button" class="preset" data-preset="starlink" aria-pressed="false">Starlink</button>
+          </div>
+          <div style="margin-bottom:1.4rem">
+            <label for="sats" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Number of satellites</label>
+            <input id="sats" type="text" inputmode="numeric" value="42" style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem">
+          </div>
+          <div style="margin-bottom:1.4rem">
+            <label for="cost" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Cost per satellite (USD)</label>
+            <div style="position:relative;display:flex;align-items:center"><span style="position:absolute;left:.9rem;font-family:var(--font-mono);font-size:1rem;color:var(--ink-faint);pointer-events:none">$</span><input id="cost" type="text" inputmode="numeric" value="3,603,571" style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem .75rem 1.7rem"></div>
+            <div id="costHelper" style="margin-top:.5rem;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.04em;color:var(--ink-faint)">≈ $151.35M across 42 satellites</div>
+          </div>
+          <div style="margin-bottom:1.4rem">
+            <label for="window" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Launch window</label>
+            <select id="window" style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem">
+              <option value="h1_2026">H1 2026</option>
+              <option value="h2_2026">H2 2026</option>
+              <option value="2027">2027</option>
+              <option value="2028" selected>2028</option>
+            </select>
+          </div>
+          <div style="margin-bottom:0">
+            <label for="life" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Assumed operating lifespan (years)</label>
+            <input id="life" type="number" min="1" step="0.5" value="3" style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem">
+          </div>
+        </div>
+
+        <div style="padding:clamp(1.5rem,3vw,2.5rem);background:var(--bg-deep)">
+          <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">Estimated fleet-wide value of the lifespan delta</div>
+          <div id="o_fleet" style="font-family:var(--font-serif);font-size:clamp(2.75rem,6vw,4.25rem);line-height:1;letter-spacing:-0.02em;margin:.25rem 0">$51.14M</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.9rem 0;border-top:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)">Added days / satellite (Hale vs SWPC)</span><span id="o_days" style="font-family:var(--font-mono);font-size:1.05rem;white-space:nowrap;flex-shrink:0">+370</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.9rem 0;border-top:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)">Value / satellite</span><span id="o_persat" style="font-family:var(--font-mono);font-size:1.05rem;white-space:nowrap;flex-shrink:0">$1.22M</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.9rem 0;border-top:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)">Daily value / satellite</span><span id="o_daily" style="font-family:var(--font-mono);font-size:1.05rem;white-space:nowrap;flex-shrink:0">$3,291</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.9rem 0;border-top:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)">SWPC → Hale lifetime (days)</span><span id="o_life" style="font-family:var(--font-mono);font-size:1.05rem;white-space:nowrap;flex-shrink:0">1127 → 1497</span></div>
+          <div id="caveatPrecise" style="margin-top:1.25rem;font-family:var(--font-mono);font-size:0.72rem;line-height:1.5;color:var(--ink-soft);border-left:2px solid var(--line);padding-left:.8rem">Modeled on Hale's HawkEye 360 Block 3 analysis at 450&nbsp;km. Lifespan deltas are case-specific to satellite class, ballistic coefficient, altitude, and launch date.</div>
+          <div id="caveatIllus" style="display:none;margin-top:1.25rem;font-family:var(--font-mono);font-size:0.72rem;line-height:1.5;color:var(--warn);border-left:2px solid var(--warn);padding-left:.8rem"><b>Illustrative only.</b> Reuses the HawkEye 360 / 450&nbsp;km drag assumptions; precise figures need a separate orbital-dynamics run for this fleet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
+
+<!-- PROOF -->
+<section id="proof" style="padding-block:var(--section-y)">
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)">
+    <div style="margin-bottom:3rem">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem"><svg width="8" height="6.1" viewBox="0 0 173.3 133" fill="var(--ink)" aria-hidden="true" style="flex-shrink:0"><path d="M86.65 0C134.5 0 173.29 38.79 173.29 86.65C173.29 103.67 168.38 119.55 159.9 132.95H13.4C4.92 119.55 0 103.67 0 86.65C0 38.79 38.8 0 86.65 0Z"/></svg><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">Proof</span></div>
+      <h2 style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:var(--lh-head);letter-spacing:-0.015em;max-width:24ch;margin:0 0 1rem">The Hale forecast tracks reality, where other forecasts drift.</h2>
+      <p style="font-size:var(--t-lead);color:var(--ink-soft);max-width:62ch;font-weight:300;margin:0">From <i>Enhancing SmallSat Constellation Replenishment Planning with Physics-Based Solar Forecasting</i> (McIntosh, Monson, Belle, Habib, Aubin), presented SmallSat 2026, 2022–2026 validation.</p>
+    </div>
+
+    <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem">Cumulative mean error, 400–450&nbsp;km · lower is better</div>
+    <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden">
+      <div style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem)">
+        <div style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">15%</div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem;max-width:34ch"><b>Hale forecast</b></div>
+      </div>
+      <div style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem)">
+        <div style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">69%</div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem;max-width:34ch">Space Weather Prediction Center <b>(SWPC)</b></div>
+      </div>
+      <div style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem)">
+        <div style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">79%</div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem;max-width:34ch">Marshall Space Flight Center <b>(MSFC) Mean</b>, used by AGI</div>
+      </div>
+    </div>
+
+    <figure style="margin:2.5rem 0 0;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-card);padding:clamp(1.25rem,3vw,2rem)">
+      <figcaption style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1.25rem">Hawk-4A — orbit perigee altitude (km) vs. time</figcaption>
+      <svg viewBox="0 0 800 360" width="100%" role="img" aria-label="Line chart: the Hale forecast tracks observed TLE decay closely while SWPC and MSFC baselines over-predict altitude.">
+        <line x1="60" y1="20" x2="60" y2="310" style="stroke:var(--line)"></line>
+        <line x1="60" y1="310" x2="780" y2="310" style="stroke:var(--line)"></line>
+        <g font-size="11" style="fill:var(--ink-faint);font-family:var(--font-mono)">
+          <text x="52" y="40" text-anchor="end">500</text>
+          <text x="52" y="130" text-anchor="end">450</text>
+          <text x="52" y="220" text-anchor="end">400</text>
+          <text x="52" y="300" text-anchor="end">300</text>
+          <text x="80" y="330">2022</text>
+          <text x="420" y="330" text-anchor="middle">2024</text>
+          <text x="760" y="330" text-anchor="end">2026</text>
+        </g>
+        <path d="M60,36 C260,46 480,60 780,96" fill="none" stroke="#b9b2a6" stroke-width="2"></path>
+        <path d="M60,36 C260,50 480,72 780,150" fill="none" stroke="#c98b86" stroke-width="2"></path>
+        <path d="M60,36 C220,58 360,96 470,150 C560,196 640,250 740,300" fill="none" stroke="#0B0B0A" stroke-width="2.5" stroke-dasharray="2 5" stroke-linecap="round"></path>
+        <path d="M60,38 C220,62 360,100 472,154 C560,198 642,252 742,298" fill="none" stroke="#2C5DA0" stroke-width="2.5"></path>
+      </svg>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-soft)">
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#2C5DA0;vertical-align:middle;margin-right:.4rem"></i>Hale forecast</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:dashed;border-top-color:#0B0B0A;vertical-align:middle;margin-right:.4rem"></i>Observed TLE history</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#c98b86;vertical-align:middle;margin-right:.4rem"></i>SWPC forecast</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#b9b2a6;vertical-align:middle;margin-right:.4rem"></i>MSFC / AGI</span>
+      </div>
+      <p style="margin:1.5rem 0 0;font-size:0.85rem;color:var(--ink-faint);max-width:62ch">Illustrative redraw of the Hawk-4A comparison. Hale tracked observed decay more closely than SWPC and MSFC baselines, which over-predicted retained altitude and therefore lifetime.</p>
+    </figure>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
+
+<!-- DRAG RACE -->
+<section id="drag-race" style="padding-block:var(--section-y)">
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)">
+    <div style="margin-bottom:3rem">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem"><svg width="8" height="6.1" viewBox="0 0 173.3 133" fill="var(--ink)" aria-hidden="true" style="flex-shrink:0"><path d="M86.65 0C134.5 0 173.29 38.79 173.29 86.65C173.29 103.67 168.38 119.55 159.9 132.95H13.4C4.92 119.55 0 103.67 0 86.65C0 38.79 38.8 0 86.65 0Z"/></svg><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">The drag race</span></div>
+      <h2 style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:var(--lh-head);letter-spacing:-0.015em;max-width:22ch;margin:0 0 1rem">The shot was called in January 2022.</h2>
+      <p style="font-size:var(--t-lead);color:var(--ink-soft);max-width:62ch;font-weight:300;margin:0">Three public forecasts of solar flux — the driver of orbital drag — were locked at the start of 2022. Every month since, the Sun has posted its number. Watch the race run.</p>
+    </div>
+
+    <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:1.5rem">
+      <div id="dr-box-hale" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease,box-shadow .5s ease">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
+          <div id="dr-skill-hale" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+          <span id="dr-rank-hale" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
+        </div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem"><b>Hale forecast</b><span id="dr-win" style="display:none;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)"> · leading</span></div>
+      </div>
+      <div id="dr-box-msfc50" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
+          <div id="dr-skill-msfc50" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+          <span id="dr-rank-msfc50" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
+        </div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Marshall Space Flight Center <b>(MSFC) Mean</b>, used by AGI</div>
+      </div>
+      <div id="dr-box-swpc" style="background:var(--bg);padding:clamp(1.25rem,3vw,2rem);transition:background .5s ease">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem">
+          <div id="dr-skill-swpc" style="font-family:var(--font-serif);font-size:clamp(2.25rem,5vw,3.25rem);line-height:1;letter-spacing:-0.02em">—</div>
+          <span id="dr-rank-swpc" style="visibility:hidden;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;color:var(--ink-soft);transition:all .3s ease"></span>
+        </div>
+        <div style="margin-top:.6rem;color:var(--ink-soft);font-size:0.98rem">Space Weather Prediction Center <b>(SWPC)</b></div>
+      </div>
+    </div>
+    <div id="dr-scorenote" style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 2rem">Forecast skill score · 1 is a perfect forecast, below 0 is guessing · Jan 2022 → …</div>
+
+    <figure style="margin:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-card);padding:clamp(1.25rem,3vw,2rem)">
+      <figcaption style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem">
+        <span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)">F10.7 solar radio flux — forecast vs. observed, monthly</span>
+        <button id="dr-replay" type="button" style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem .9rem;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer">Replay the race</button>
+      </figcaption>
+      <svg id="dr-chart" viewBox="0 0 800 380" width="100%" role="img" aria-label="Line chart: Hale, MSFC, and SWPC F10.7 forecasts locked in January 2022, with the observed monthly value drawn across them. Hale tracks the observed values most closely.">
+        <line x1="60" y1="20" x2="60" y2="320" style="stroke:var(--line)"></line>
+        <line x1="60" y1="320" x2="780" y2="320" style="stroke:var(--line)"></line>
+        <g font-size="11" style="fill:var(--ink-faint);font-family:var(--font-mono)">
+          <text x="52" y="325" text-anchor="end">75</text>
+          <text x="52" y="242" text-anchor="end">125</text>
+          <text x="52" y="158" text-anchor="end">175</text>
+          <text x="52" y="75" text-anchor="end">225</text>
+          <text x="60" y="340">2022</text>
+          <text x="204" y="340">2023</text>
+          <text x="349" y="340">2024</text>
+          <text x="493" y="340">2025</text>
+          <text x="637" y="340">2026</text>
+        </g>
+        <rect id="dr-summer" x="0" y="20" width="0" height="300" fill="rgba(11,11,10,.045)"></rect>
+        <text id="dr-summer-label" x="0" y="34" font-size="10" style="fill:var(--ink-faint);font-family:var(--font-mono);letter-spacing:.08em" opacity="0">SUMMER 2026</text>
+        <path id="dr-p-msfc50" fill="none" stroke="#b9b2a6" stroke-width="2"></path>
+        <path id="dr-p-swpc" fill="none" stroke="#c98b86" stroke-width="2"></path>
+        <path id="dr-p-hale" fill="none" stroke="var(--hale-data)" stroke-width="2.5"></path>
+        <path id="dr-p-obs" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="2 5" stroke-linecap="round"></path>
+        <circle id="dr-dot" r="4.5" fill="var(--ink)" opacity="0"></circle>
+        <text id="dr-dot-label" font-size="11" style="fill:var(--ink);font-family:var(--font-mono)" opacity="0"></text>
+      </svg>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-soft)">
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#2C5DA0;vertical-align:middle;margin-right:.4rem"></i>Hale forecast</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:dashed;border-top-color:#0B0B0A;vertical-align:middle;margin-right:.4rem"></i>Observed (NOAA)</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#c98b86;vertical-align:middle;margin-right:.4rem"></i>SWPC forecast</span>
+        <span><i style="display:inline-block;width:18px;height:0;border-top-width:2px;border-top-style:solid;border-top-color:#b9b2a6;vertical-align:middle;margin-right:.4rem"></i>MSFC 50th (AGI)</span>
+      </div>
+      <p style="margin:1.5rem 0 0;font-size:0.85rem;color:var(--ink-faint);max-width:62ch">Forecasts as issued at the start of 2022; they have not been revised. Observed values are the monthly mean 10.7&nbsp;cm solar radio flux published by NOAA SWPC — the chart updates automatically as each new month is posted.</p>
+    </figure>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem)"><hr style="border:0;border-top:1px solid var(--line);margin:0"></div>
+
+<!-- API ACCESS -->
+<section id="api" style="padding-block:var(--section-y)">
+  <div data-r="stack" style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem);display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,5rem);align-items:start">
+    <div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem"><svg width="8" height="6.1" viewBox="0 0 173.3 133" fill="var(--ink)" aria-hidden="true" style="flex-shrink:0"><path d="M86.65 0C134.5 0 173.29 38.79 173.29 86.65C173.29 103.67 168.38 119.55 159.9 132.95H13.4C4.92 119.55 0 103.67 0 86.65C0 38.79 38.8 0 86.65 0Z"/></svg><span style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">API access</span></div>
+      <h2 style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:var(--lh-head);letter-spacing:-.015em;max-width:14ch;margin:0">If you want to test the forecast, request access.</h2>
+      <p style="max-width:62ch;color:var(--ink-soft);font-size:1.075rem;margin:1.25rem 0 0">Hale formats its forecast for existing propagator and planning workflows. Access is reviewed for qualified satellite operators and space infrastructure partners.</p>
+      <p style="font-family:var(--font-mono);font-size:0.72rem;line-height:1.6;color:var(--ink-soft);margin:1rem 0 0">Access is granted after manual review. We verify operator and industry fit before issuing keys — this is not instant self-serve provisioning.</p>
+    </div>
+    <div>
+    <form id="apiForm" novalidate style="background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-card);padding:clamp(1.5rem,3vw,2.5rem)">
+      <div data-r="pair" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div style="margin-bottom:1.4rem"><label for="f_name" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Name</label><input id="f_name" type="text" placeholder="Jane Okafor" style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem"></div>
+        <div style="margin-bottom:1.4rem"><label for="f_email" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Work email</label><input id="f_email" type="email" placeholder="jane@operator.com" style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem"></div>
+      </div>
+      <div data-r="pair" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div style="margin-bottom:1.4rem"><label for="f_co" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Company</label><input id="f_co" type="text" placeholder="Operator, Inc." style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem"></div>
+        <div style="margin-bottom:1.4rem"><label for="f_role" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Role / team</label><input id="f_role" type="text" placeholder="Flight dynamics" style="width:100%;font-family:var(--font-mono);font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem"></div>
+      </div>
+      <div style="margin-bottom:1.4rem"><label for="f_use" style="display:block;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem">Intended use case</label><textarea id="f_use" placeholder="e.g. Validate drag forecast against our 450–550 km LEO constellation propagation." style="width:100%;font-family:var(--font-serif);font-size:1rem;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem;min-height:90px;resize:vertical;background:var(--surface)"></textarea></div>
+      <p id="formError" role="alert" style="display:none;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.04em;line-height:1.5;color:var(--warn);margin:0 0 .9rem"></p>
+      <button class="btn" type="submit" style="width:100%;display:flex;justify-content:center;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;padding:.95rem 1.6rem;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer">Request API access</button>
+      <p style="font-family:var(--font-mono);font-size:0.72rem;line-height:1.6;color:var(--ink-soft);margin:1rem 0 0">By requesting access you agree to Hale verifying your identity and operator status. IP-address handling is disclosed at provisioning.</p>
+    </form>
+    <div id="apiDone" role="status" style="display:none;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-card);padding:clamp(3rem,6vw,4.5rem) clamp(1.5rem,3vw,2.5rem);text-align:center;flex-direction:column;align-items:center">
+      <div style="font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem">API access</div>
+      <h3 style="font-family:var(--font-serif);font-size:var(--t-h3);font-weight:400;line-height:var(--lh-head);letter-spacing:-0.01em;margin:0 0 1rem">Request received.</h3>
+      <p style="color:var(--ink-soft);max-width:48ch;margin:0">Access is reviewed for qualified satellite operators and space infrastructure partners. We'll follow up by email after manual review.</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section style="position:relative;overflow:hidden;text-align:center;padding-block:clamp(5rem,12vw,10rem)">
+  <div aria-hidden="true" data-r="deco" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+    <figure style="position:absolute;top:11%;left:5%;width:clamp(110px,12vw,148px);height:clamp(110px,12vw,148px);transform:rotate(-3deg);border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-card);margin:0">
+      <img class="imgfx" src="https://cameronehrlich.github.io/hale-summer-2026-drop/images/close-earth-night.jpg" alt="" style="width:100%;height:100%;object-fit:cover">
+      <figcaption style="position:absolute;left:10px;bottom:9px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase">Kp-index &amp; Ap-index</figcaption>
+    </figure>
+    <figure style="position:absolute;bottom:12%;right:5%;width:clamp(96px,10vw,128px);height:clamp(96px,10vw,128px);transform:rotate(3deg);border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-card);margin:0">
+      <img class="imgfx" src="https://cameronehrlich.github.io/hale-summer-2026-drop/images/close-night-sky.jpg" alt="" style="width:100%;height:100%;object-fit:cover">
+      <figcaption style="position:absolute;left:10px;bottom:9px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:0.14em;text-transform:uppercase">F10.7 Solar Flux</figcaption>
+    </figure>
+  </div>
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem);position:relative;z-index:1">
+    <blockquote style="font-family:var(--font-serif);font-size:var(--t-h1);font-weight:400;line-height:1.12;letter-spacing:-0.015em;max-width:18ch;margin:0 auto">Forecasting is not about reacting faster. It is about understanding earlier.</blockquote>
+    <a class="btn" href="#api" style="display:inline-block;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;padding:.95rem 1.6rem;border-radius:999px;text-decoration:none;border:1px solid var(--ink);background:var(--ink);color:var(--bg)">Request API access</a>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding-block:3rem;color:var(--ink-soft)">
+  <div style="max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,5rem);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.9rem">
+    <a href="https://haleswx.com/" style="display:flex;align-items:center;color:var(--ink);text-decoration:none" aria-label="Hale — home"><svg width="51" height="21" viewBox="0 0 1817 747" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path d="M1457.1 746.011C1334.54 746.011 1254.61 634.108 1254.61 481.708C1254.61 331.44 1330.28 228.063 1448.57 228.063C1564.74 228.063 1631.88 326.111 1631.88 472.117H1359.05V500.892C1359.05 603.202 1395.29 667.146 1479.48 667.146C1542.36 667.146 1589.25 629.846 1604.17 531.798H1630.82C1624.42 654.357 1566.87 746.011 1457.1 746.011ZM1440.05 268.561C1398.49 268.561 1359.05 295.205 1359.05 377.266V432.685H1521.04V377.266C1521.04 296.27 1481.61 268.561 1440.05 268.561Z"/><path d="M1048.04 735.357V708.714C1082.15 708.714 1100.26 683.136 1100.26 642.638V77.7987C1100.26 39.4322 1086.41 26.6434 1048.04 26.6434V1.11501e-05H1196.18V642.638C1196.18 683.136 1214.3 708.714 1248.4 708.714V735.357H1048.04Z"/><path d="M752.792 746.011C684.585 746.011 627.035 700.184 627.035 628.78C627.035 521.141 752.792 488.103 810.342 447.605C848.708 420.961 873.22 393.252 873.22 342.097C873.22 296.27 842.314 266.43 796.487 266.43C751.726 266.43 718.688 290.942 718.688 326.111C718.688 362.346 751.726 359.149 751.726 399.647C751.726 430.553 729.346 452.934 697.374 452.934C656.876 452.934 629.167 420.961 629.167 373.003C629.167 300.533 694.177 228.063 805.013 228.063C903.061 228.063 969.136 276.021 969.136 388.989V625.583C969.136 663.949 977.662 674.606 992.582 674.606C1006.44 674.606 1013.9 662.883 1020.29 649.029L1041.61 658.62C1026.69 722.564 989.385 742.813 952.084 742.813C909.455 742.813 873.22 720.433 873.22 663.949H871.089C848.708 721.499 802.881 746.011 752.792 746.011ZM790.093 669.278C827.393 669.278 863.628 642.634 873.22 586.15V444.408C857.234 461.459 840.182 474.248 823.131 485.971C770.909 522.206 727.214 550.981 727.214 607.465C727.214 647.963 752.792 669.278 790.093 669.278Z"/><path d="M0 735.357V708.714C47.9581 708.714 73.5357 683.136 73.5357 642.638V92.719C73.5357 52.221 47.9581 26.6434 0 26.6434V0H253.645V26.6434C205.687 26.6434 180.109 52.221 180.109 92.719V330.378H425.228V92.719C425.228 52.221 399.651 26.6434 351.693 26.6434V0H605.338V26.6434C557.379 26.6434 531.802 52.221 531.802 92.719V642.638C531.802 683.136 557.379 708.714 605.338 708.714V735.357H351.693V708.714C399.651 708.714 425.228 683.136 425.228 642.638V373.007H180.109V642.638C180.109 683.136 205.687 708.714 253.645 708.714V735.357H0Z"/><path d="M1729.9 602.412C1777.75 602.412 1816.54 641.205 1816.54 689.057C1816.54 706.085 1811.63 721.964 1803.15 735.357H1656.65C1648.17 721.964 1643.25 706.084 1643.25 689.057C1643.25 641.205 1682.05 602.412 1729.9 602.412Z"/></svg></a>
+    <div style="font-family:var(--font-mono);font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">Summer 2026 Drag Race</div>
+    <div style="font-family:var(--font-mono);font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)">© 2026 Hale</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var WINDOWS = { h1_2026:{swpc:419,hale:448}, h2_2026:{swpc:475,hale:542}, "2027":{swpc:612,hale:775}, "2028":{swpc:1127,hale:1497} };
+  var PRESETS = { he360:{sats:42,costPer:3603571}, starlink:{sats:6500,costPer:500000} };
+  var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdLYYUIRurohfKQD0OfbsGX9Behctvc2rP_kqXhB4bQJVKROA/formResponse";
+  var ENTRIES = { name:"entry.993766149", email:"entry.360654526", company:"entry.676895337", role:"entry.70834795", use:"entry.1822215419" };
+  var activePreset = "he360";
+  var $ = function(id){ return document.getElementById(id); };
+  function intOf(v){ var n = parseInt(String(v).replace(/[^0-9]/g,''),10); return isNaN(n)?0:n; }
+  function usd(n){ var a=Math.abs(n);
+    if(a>=1e9) return (n/1e9).toFixed(2).replace(/\.00$/,'')+'B';
+    if(a>=1e6) return (n/1e6).toFixed(2).replace(/\.00$/,'')+'M';
+    if(a>=1e3) return Math.round(n/1e3)+'K';
+    return Math.round(n).toString(); }
+  function dollars(n){ return '$'+usd(n); }
+  function isExactHe360(){ return intOf($('sats').value)===42 && intOf($('cost').value)===3603571 && parseFloat($('life').value)===3; }
+  function setPressed(name){ var els=document.querySelectorAll('.preset'); for(var i=0;i<els.length;i++){ els[i].setAttribute('aria-pressed', els[i].getAttribute('data-preset')===name?'true':'false'); } }
+
+  function recalc(){
+    var sats = Math.max(1, intOf($('sats').value)||1);
+    var costPer = Math.max(0, intOf($('cost').value));   // cost per satellite
+    var life = Math.max(1, parseFloat($('life').value)||3);
+    var w = WINDOWS[$('window').value];
+    var daily = costPer/(life*365);                       // daily value of one satellite
+    var dd = w.hale - w.swpc;                             // extra days of life from Hale vs SWPC
+    var perSat = daily*dd;                                // value of the lifespan delta, per satellite
+    var fleet = perSat*sats;                              // fleet-wide value (now scales with the count)
+    $('o_fleet').textContent = dollars(fleet);
+    $('o_days').textContent = (dd>=0?'+':'')+dd;
+    $('o_persat').textContent = dollars(perSat);
+    $('o_daily').textContent = '$'+Math.round(daily).toLocaleString();
+    $('o_life').textContent = w.swpc+' → '+w.hale;
+    $('costHelper').textContent = '≈ '+dollars(costPer*sats)+' across '+sats.toLocaleString('en-US')+' satellite'+(sats===1?'':'s');
+    var precise = activePreset==='he360';
+    $('caveatPrecise').style.display = precise?'':'none';
+    $('caveatIllus').style.display = precise?'none':'';
+  }
+  function fmtField(el){ var d=el.value.replace(/[^0-9]/g,''); el.value = d?(+d).toLocaleString('en-US'):''; }
+  function applyPreset(name){ var p=PRESETS[name]; activePreset=name; $('sats').value=p.sats.toLocaleString('en-US'); $('cost').value=p.costPer.toLocaleString('en-US'); setPressed(name); recalc(); }
+  function dropToCustom(){ if(activePreset!=='custom' && !isExactHe360()){ activePreset='custom'; setPressed('custom'); } }
+
+  var presets = document.querySelectorAll('.preset');
+  for(var i=0;i<presets.length;i++){ presets[i].addEventListener('click', (function(b){ return function(){ applyPreset(b.getAttribute('data-preset')); }; })(presets[i])); }
+  ['sats','cost'].forEach(function(id){ $(id).addEventListener('input', function(e){ fmtField(e.target); dropToCustom(); recalc(); }); });
+  $('life').addEventListener('input', function(){ dropToCustom(); recalc(); });
+  $('window').addEventListener('change', recalc);
+
+  $('apiForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = function(id){ return ($(id).value||'').trim(); };
+    var name=v('f_name'), email=v('f_email');
+    var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var err=$('formError');
+    if(!name){ err.textContent='Please enter your name.'; err.style.display=''; return; }
+    if(!emailOk){ err.textContent='Please enter a valid work email.'; err.style.display=''; return; }
+    err.style.display='none';
+    var body=new URLSearchParams();
+    body.append(ENTRIES.name,name); body.append(ENTRIES.email,email);
+    body.append(ENTRIES.company,v('f_co')); body.append(ENTRIES.role,v('f_role')); body.append(ENTRIES.use,v('f_use'));
+    fetch(FORM_ACTION,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(function(){});
+    $('apiForm').style.display='none';
+    $('apiDone').style.display='flex';
+  });
+
+  recalc();
+})();
+</script>
+<script>
+(function(){
+  // ---- The Drag Race: forecasts locked Jan 2022; observed F10.7 races across ----
+  // Forecast series: exact monthly values provided by Hale (HE360-MonthlyData, Jul 2026 handoff), Jan 2022 - Dec 2026.
+  var FC = {
+    hale:[105.2,113.3,117.4,124.9,128.1,128.5,129.2,133.8,138,143.1,150.3,150.8,151.6,153.6,156.6,162,158.7,156.4,160.5,168,166.8,164.4,164.2,169.1,162,156.8,155.6,154.9,152.3,152.9,155.9,157.8,155.8,155.5,159.5,170.5,171.8,172.6,172.5,170.6,163,163,165.6,165.7,164.2,162.4,160.4,158.1,155.8,151.3,148,145.5,135.1,131.8,126,116.3,119.8,118,116.3,115.7],
+    msfc50:[96.6,99.1,101.5,104.2,107,109.8,112.4,114.4,116.2,118.5,120.8,123.3,125.4,127.2,129,130.7,132.1,133.2,134.2,134.8,135.3,135.9,136.5,136.8,136.4,135.5,135,135.1,135.7,136.2,136.4,136.6,136.6,136.5,136.4,136.3,135.6,134.6,133.4,132.2,131,130.1,129,127.7,126.3,125.2,124.4,123.7,122.3,120.8,119.7,118.9,117.7,116.3,114.8,113.4,112,110.2,108.5,106.9],
+    swpc:[80.8,82.1,83.5,85,86.5,88.1,89.8,91.5,93.2,95,96.8,98.6,100.5,102.3,104.2,106.1,107.9,109.7,111.5,113.3,115,116.7,118.4,119.9,121.5,122.9,124.3,125.6,126.9,128,129.1,130.1,131,131.9,132.6,133.3,133.8,134.3,134.7,135,135.2,135.3,135.4,135.3,135.2,135,134.7,134.3,133.9,133.4,132.8,132.2,131.4,130.7,129.8,128.9,128,127,126,124.9]
+  };
+  // Static fallback (observed monthly mean F10.7, NOAA SWPC, Jan 2022 - Jun 2026) if the live fetch fails.
+  var OBS_FALLBACK = [104,109.2,117.8,130.6,134,115.8,125.6,118.1,134.7,132.8,123.6,148.5,182.5,172.1,157.5,145.9,156,162.4,177.5,153.9,155.7,141.6,154.4,159.3,164,173.3,155.2,161.7,188.4,185.1,198.6,245.6,196.7,222.6,199.9,196.9,189.4,184.3,163.8,162.2,135.2,131.4,137.7,156.1,153.9,139.7,141.6,160.1,151.2,135.9,130.7,120,125.7,138.2];
+  var N = 60, X0 = 60, X1 = 780, Y0 = 320, YV0 = 70, YV1 = 250, YP = 300;
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function X(m){ return X0 + m * (X1 - X0) / (N - 1); }
+  function Y(v){ return Y0 - (v - YV0) * YP / (YV1 - YV0); }
+  function path(arr){ return arr.map(function(v,i){ return (i?'L':'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(''); }
+  function $(id){ return document.getElementById(id); }
+  function tag(i){ var y = 2022 + Math.floor(i/12); return MONTHS[i%12] + ' ' + y; }
+
+  // static forecast lines
+  $('dr-p-hale').setAttribute('d', path(FC.hale));
+  $('dr-p-msfc50').setAttribute('d', path(FC.msfc50));
+  $('dr-p-swpc').setAttribute('d', path(FC.swpc));
+  // Summer 2026 window (Jun-Aug 2026 = months 53..55)
+  var sx = X(53), sw = X(55) - X(53);
+  $('dr-summer').setAttribute('x', sx.toFixed(1)); $('dr-summer').setAttribute('width', sw.toFixed(1));
+  var sl = $('dr-summer-label'); sl.setAttribute('x', (sx + sw/2).toFixed(1)); sl.setAttribute('text-anchor','middle'); sl.setAttribute('opacity','1');
+
+  var obs = OBS_FALLBACK.slice();
+  var started = false, done = false, raceToken = 0;
+
+  var FLASHY = true; // classic mode retired 7/3 per Katherine's pick
+  var NAMES = ['hale','msfc50','swpc'];
+  var LINE_COLORS = { hale:'#2C5DA0', msfc50:'#b9b2a6', swpc:'#c98b86' };
+  var svg = $('dr-chart'), SVGNS = 'http://www.w3.org/2000/svg';
+  var scan = null, trackers = {};
+  if (FLASHY) {
+    scan = document.createElementNS(SVGNS, 'line');
+    scan.setAttribute('y1','20'); scan.setAttribute('y2','320');
+    scan.setAttribute('stroke','rgba(11,11,10,.14)'); scan.setAttribute('stroke-width','1');
+    scan.setAttribute('opacity','0');
+    svg.insertBefore(scan, $('dr-p-msfc50'));
+    NAMES.forEach(function(k){
+      var c = document.createElementNS(SVGNS, 'circle');
+      c.setAttribute('r','3.2'); c.setAttribute('fill', LINE_COLORS[k]); c.setAttribute('opacity','0');
+      svg.insertBefore(c, $('dr-dot'));
+      trackers[k] = c;
+    });
+  }
+
+  // Skill score vs. climatology (1 - MSE_forecast / MSE_climatology) — the SmallSat paper's convention.
+  function skillTo(k, upto){
+    var n = upto + 1, mean = 0, i;
+    for (i = 0; i < n; i++) mean += obs[i];
+    mean /= n;
+    var mseC = 0, mseF = 0;
+    for (i = 0; i < n; i++) {
+      mseC += (obs[i] - mean) * (obs[i] - mean);
+      mseF += (FC[k][i] - obs[i]) * (FC[k][i] - obs[i]);
+    }
+    if (mseC / n < 5) return null; // too little variance yet to be meaningful
+    return 1 - mseF / mseC;
+  }
+  function fmtSkill(s){
+    if (s === null) return '…';
+    if (s < -9.9) s = -9.9;
+    return (s >= 0 ? '+' : '−') + Math.abs(s).toFixed(2);
+  }
+
+  function setScores(upto){
+    var skills = {};
+    NAMES.forEach(function(k){
+      skills[k] = skillTo(k, upto);
+      $('dr-skill-' + k).textContent = fmtSkill(skills[k]);
+    });
+    var order = NAMES.slice().sort(function(a,b){ return (skills[b] === null ? -99 : skills[b]) - (skills[a] === null ? -99 : skills[a]); });
+    $('dr-win').style.display = (order[0] === 'hale' && upto >= 5) ? '' : 'none';
+    if (FLASHY) {
+      var RANKS = ['1st','2nd','3rd'];
+      order.forEach(function(k, idx){
+        var chip = $('dr-rank-' + k);
+        chip.textContent = RANKS[idx];
+        chip.style.visibility = (skills[k] === null || upto < 5) ? 'hidden' : 'visible';
+        if (idx === 0) { chip.style.background = 'var(--ink)'; chip.style.color = 'var(--bg)'; chip.style.borderColor = 'var(--ink)'; }
+        else { chip.style.background = 'transparent'; chip.style.color = 'var(--ink-soft)'; chip.style.borderColor = 'var(--line)'; }
+      });
+    }
+    $('dr-scorenote').textContent = 'Forecast skill score · 1 is a perfect forecast, below 0 is guessing · Jan 2022 → ' + tag(upto) + (upto === obs.length - 1 ? '' : ' …');
+  }
+
+  function drawIn(cb){
+    // forecast lines sweep in before the race starts
+    var ps = [$('dr-p-swpc'), $('dr-p-msfc50'), $('dr-p-hale')], mx = 0;
+    ps.forEach(function(p, i){
+      try {
+        var len = p.getTotalLength();
+        p.style.transition = 'none';
+        p.style.strokeDasharray = len + ' ' + len;
+        p.style.strokeDashoffset = len;
+        p.getBoundingClientRect();
+        p.style.transition = 'stroke-dashoffset .9s ease ' + (i * 0.18) + 's';
+        p.style.strokeDashoffset = '0';
+        mx = 900 + i * 180;
+      } catch(e) {}
+    });
+    setTimeout(function(){
+      ps.forEach(function(p){ p.style.strokeDasharray = 'none'; });
+      cb();
+    }, mx || 0);
+  }
+
+  var raf = window.requestAnimationFrame || function(fn){ return setTimeout(function(){ fn(nowMs()); }, 16); };
+  function nowMs(){ return (window.performance && performance.now) ? performance.now() : Date.now(); }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+
+  function race(){
+    var token = ++raceToken;
+    var dot = $('dr-dot'), lbl = $('dr-dot-label'), p = $('dr-p-obs');
+    var MS_PER_MONTH = 110, lastIdx = -1, t0 = null;
+    // reset any finish flourish
+    NAMES.forEach(function(k){ var b = $('dr-box-' + k); b.style.background = 'var(--bg)'; b.style.boxShadow = 'none'; });
+    function run(){
+      if (token !== raceToken) return;
+      dot.setAttribute('opacity','1'); lbl.setAttribute('opacity','1');
+      if (FLASHY) { scan.setAttribute('opacity','1'); NAMES.forEach(function(k){ trackers[k].setAttribute('opacity','.85'); }); }
+      raf(frame);
+    }
+    function frame(ts){
+      if (token !== raceToken) return;
+      if (t0 === null) t0 = ts;
+      var last = obs.length - 1;
+      var f = Math.min((ts - t0) / MS_PER_MONTH, last);   // fractional month
+      var idx = Math.floor(f), frac = f - idx;
+      var nxt = Math.min(idx + 1, last);
+      var x = lerp(X(idx), X(nxt), frac);
+      var y = lerp(Y(obs[idx]), Y(obs[nxt]), frac);
+      p.setAttribute('d', path2(obs, idx) + (frac > 0 ? 'L' + x.toFixed(1) + ',' + y.toFixed(1) : ''));
+      dot.setAttribute('cx', x.toFixed(1)); dot.setAttribute('cy', y.toFixed(1));
+      var near = Math.round(f);
+      lbl.setAttribute('x', (x + (near > N - 10 ? -8 : 8)).toFixed(1)); lbl.setAttribute('y', (y - 9).toFixed(1));
+      lbl.setAttribute('text-anchor', near > N - 10 ? 'end' : 'start');
+      lbl.textContent = tag(near) + ' · ' + obs[near].toFixed(0);
+      if (FLASHY) {
+        scan.setAttribute('x1', x.toFixed(1)); scan.setAttribute('x2', x.toFixed(1));
+        NAMES.forEach(function(k){
+          var ty = lerp(Y(FC[k][idx]), Y(FC[k][nxt]), frac);
+          trackers[k].setAttribute('cx', x.toFixed(1)); trackers[k].setAttribute('cy', ty.toFixed(1));
+        });
+      }
+      if (idx !== lastIdx) { setScores(idx); lastIdx = idx; }
+      if (f < last) { raf(frame); }
+      else {
+        setScores(last);
+        done = true;
+        if (FLASHY) {
+          scan.setAttribute('opacity','0');
+          var b = $('dr-box-hale');
+          b.style.background = 'var(--surface)';
+          b.style.boxShadow = 'var(--shadow-card)';
+        }
+      }
+    }
+    if (FLASHY && !done && !race._drawn) { race._drawn = true; drawIn(run); } else { run(); }
+  }
+
+  // ---- hover inspector: date + all four values at the nearest month ----
+  (function(){
+    var g = document.createElementNS(SVGNS, 'g');
+    g.setAttribute('opacity', '0');
+    g.setAttribute('pointer-events', 'none');
+    var vline = document.createElementNS(SVGNS, 'line');
+    vline.setAttribute('y1','20'); vline.setAttribute('y2','320');
+    vline.setAttribute('stroke','rgba(11,11,10,.28)'); vline.setAttribute('stroke-width','1'); vline.setAttribute('stroke-dasharray','3 3');
+    g.appendChild(vline);
+    var box = document.createElementNS(SVGNS, 'rect');
+    box.setAttribute('width','148'); box.setAttribute('height','96'); box.setAttribute('rx','8');
+    box.setAttribute('fill','var(--surface)'); box.setAttribute('stroke','var(--line)');
+    g.appendChild(box);
+    var colors = { date:'var(--ink)', obs:'var(--ink)', hale:'#2C5DA0', msfc50:'#8a8478', swpc:'#b06a63' };
+    var rows = ['date','obs','hale','msfc50','swpc'].map(function(k){
+      var l = document.createElementNS(SVGNS, 'text');
+      l.setAttribute('font-size','12'); l.setAttribute('style','font-family:var(--font-mono)'); l.setAttribute('fill', colors[k]);
+      var v = document.createElementNS(SVGNS, 'text');
+      v.setAttribute('font-size','12'); v.setAttribute('style','font-family:var(--font-mono)'); v.setAttribute('fill', colors[k]);
+      v.setAttribute('text-anchor','end');
+      g.appendChild(l); g.appendChild(v);
+      return { l: l, v: v };
+    });
+    svg.appendChild(g);
+    function place(idx){
+      var x = X(idx);
+      vline.setAttribute('x1', x.toFixed(1)); vline.setAttribute('x2', x.toFixed(1));
+      var bx = x + 12; if (bx + 148 > 790) bx = x - 160;
+      box.setAttribute('x', bx.toFixed(1)); box.setAttribute('y', '30');
+      var data = [
+        [tag(idx), ''],
+        ['Observed', idx < obs.length ? obs[idx].toFixed(0) : '—'],
+        ['Hale', FC.hale[idx].toFixed(0)],
+        ['MSFC', FC.msfc50[idx].toFixed(0)],
+        ['SWPC', FC.swpc[idx].toFixed(0)]
+      ];
+      rows.forEach(function(r, i){
+        r.l.setAttribute('x', (bx + 12).toFixed(1)); r.l.setAttribute('y', (48 + i * 17).toFixed(1));
+        r.v.setAttribute('x', (bx + 136).toFixed(1)); r.v.setAttribute('y', (48 + i * 17).toFixed(1));
+        r.l.textContent = data[i][0]; r.v.textContent = data[i][1];
+      });
+    }
+    function toMonth(clientX){
+      var r = svg.getBoundingClientRect();
+      var vx = (clientX - r.left) / r.width * 800;
+      var m = Math.round((vx - X0) / (X1 - X0) * (N - 1));
+      return Math.max(0, Math.min(N - 1, m));
+    }
+    svg.addEventListener('pointermove', function(e){
+      place(toMonth(e.clientX));
+      g.setAttribute('opacity', '1');
+    });
+    svg.addEventListener('pointerleave', function(){ g.setAttribute('opacity', '0'); });
+  })();
+  function path2(arr, upto){
+    var s = '';
+    for (var i = 0; i <= upto; i++) s += (i ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(arr[i]).toFixed(1);
+    return s;
+  }
+
+  $('dr-replay').addEventListener('click', function(){ done = false; race(); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting && !started) { started = true; race(); io.disconnect(); } });
+    }, { threshold: 0.35 });
+    io.observe($('dr-chart'));
+  } else { started = true; race(); }
+
+  // live observed data (auto-updates monthly); falls back silently to the embedded array
+  fetch('https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var rec = d.filter(function(r){ return r['time-tag'] >= '2022-01' && r['f10.7'] > 0; }).slice(0, N);
+      if (rec.length >= 12) {
+        obs = rec.map(function(r){ return Math.round(r['f10.7'] * 10) / 10; });
+        if (done) { $('dr-p-obs').setAttribute('d', path2(obs, obs.length - 1)); setScores(obs.length - 1); }
+      }
+    }).catch(function(){});
+})();
+</script>
+</body>
+</html>
