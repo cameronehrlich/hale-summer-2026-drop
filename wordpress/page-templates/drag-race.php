@@ -1,11 +1,8 @@
 <?php
 /**
  * Template Name: Drag Race (Standalone)
- *
- * Full-bleed standalone template for the Summer 2026 Drag Race page.
- * Prints a complete HTML document and bypasses the theme chrome entirely.
- * Generated from the canonical page repo (hale-summer-2026-drop); do not hand-edit —
- * regenerate and re-upload to update.
+ * Prints a full standalone HTML document; bypasses theme chrome + wpautop.
+ * Regenerated from the canonical page repo. Do not hand-edit.
  */
 ?>
 <!doctype html>
@@ -396,7 +393,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
 (function(){
   var WINDOWS = { h1_2026:{swpc:419,hale:448}, h2_2026:{swpc:475,hale:542}, "2027":{swpc:612,hale:775}, "2028":{swpc:1127,hale:1497} };
   var PRESETS = { he360:{sats:42,costPer:3603571}, starlink:{sats:6500,costPer:500000} };
-  var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdLYYUIRurohfKQD0OfbsGX9Behctvc2rP_kqXhB4bQJVKROA/formResponse";
+  var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSebdxHtNZ_N9QfYr-_vUv-ypjJzcXITaoPNOXSNZQY1EgVfBw/formResponse";
   var ENTRIES = { name:"entry.993766149", email:"entry.360654526", company:"entry.676895337", role:"entry.70834795", use:"entry.1822215419" };
   var activePreset = "he360";
   var $ = function(id){ return document.getElementById(id); };
