@@ -380,7 +380,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
   var WINDOWS = { h1_2026:{swpc:419,hale:448}, h2_2026:{swpc:475,hale:542}, "2027":{swpc:612,hale:775}, "2028":{swpc:1127,hale:1497} };
   var PRESETS = { he360:{sats:42,costPer:3603571}, starlink:{sats:6500,costPer:500000} };
   var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSebdxHtNZ_N9QfYr-_vUv-ypjJzcXITaoPNOXSNZQY1EgVfBw/formResponse";
-  var ENTRIES = { name:"entry.993766149", email:"entry.360654526", company:"entry.676895337", role:"entry.70834795", use:"entry.1822215419" };
+  var ENTRIES = { name:"entry.993766149", email:"entry.360654526", company:"entry.676895337", role:"entry.70834795", use:"entry.1822215419", ip:"entry.1655459558" };
+  var visitorIP = "";
+  fetch('https://api.ipify.org?format=json').then(function(r){ return r.json(); }).then(function(d){ visitorIP = d.ip || ""; }).catch(function(){});
   var activePreset = "he360";
   var $ = function(id){ return document.getElementById(id); };
   function intOf(v){ var n = parseInt(String(v).replace(/[^0-9]/g,''),10); return isNaN(n)?0:n; }
@@ -434,6 +436,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--ink);outline-off
     var body=new URLSearchParams();
     body.append(ENTRIES.name,name); body.append(ENTRIES.email,email);
     body.append(ENTRIES.company,v('f_co')); body.append(ENTRIES.role,v('f_role')); body.append(ENTRIES.use,v('f_use'));
+    if(visitorIP) body.append(ENTRIES.ip,visitorIP);
     fetch(FORM_ACTION,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(function(){});
     $('apiForm').style.display='none';
     $('apiDone').style.display='flex';
